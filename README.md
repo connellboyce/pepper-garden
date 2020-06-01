@@ -12,7 +12,7 @@ This repository is based on the Pepper Garden App written in Java.
 ### **Installation**
 Clone the repository
 ```bash
-$ git clone https://github.com/connellboyce/garden-app.git
+$ git clone https://github.com/connellboyce/pepper-garden.git
 ```
 
 
