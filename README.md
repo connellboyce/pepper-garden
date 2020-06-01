@@ -17,8 +17,8 @@ $ git clone https://github.com/connellboyce/pepper-garden.git
 
 
 ### **Components**
-* Java
-* SpringBoot
+* Java 14
+* SpringBoot 2.3.0
 * Maven
 * RESTful APIs
 * MongoDB
