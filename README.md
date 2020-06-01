@@ -1,2 +1,2 @@
-# pepper-garden
-IST 495 Project
+# garden-app
+First practical web application
