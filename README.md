@@ -1,5 +1,5 @@
 # Pepper Garden App
-This repository is based on the Pepper Garden App written in Java.
+This com.connellboyce.peppergarden.repository is based on the Pepper Garden App written in Java.
 
 ## Table of Contents
 1. [Installation](#Installation)
@@ -10,7 +10,7 @@ This repository is based on the Pepper Garden App written in Java.
 
 
 ### **Installation**
-Clone the repository
+Clone the com.connellboyce.peppergarden.repository
 ```bash
 $ git clone https://github.com/connellboyce/pepper-garden.git
 ```
@@ -21,7 +21,7 @@ $ git clone https://github.com/connellboyce/pepper-garden.git
 * SpringBoot 2.3.0
 * Maven
 * RESTful APIs
-* MongoDB
+* MongoDB Atlas
 
 
 ### **Features**
