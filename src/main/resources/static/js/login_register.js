@@ -24,6 +24,30 @@ $(document).ready(function(){
                 })
             });
 
+            $("#registerForm").on("submit", function(e){
+                            e.preventDefault();
+                            // send ajax
+                            var signupRequest={username: $("#signup_username").val(), email: $("#signup_email").val(), roles: [$("#signup_roles").val()], password: $("#signup_password").val()};
+                            console.log("signupRequest = " + signupRequest);
+                            console.log("SFY " + JSON.stringify(signupRequest));
+                            $.ajax({
+                                url: '/api/auth/signup', // url where to submit the request
+                                type : "POST", // type of action POST || GET
+                                dataType : 'json', // data type
+                                    contentType:"application/json; charset=utf-8",
+                                data : JSON.stringify(signupRequest), // post data || get data
+                                success : function(result) {
+                                    //$("#loginDiv").hide();
+                                    // you can see the result from the console
+                                    // tab of the developer tools
+                                    console.log(result);
+                                },
+                                error: function(xhr, resp, text) {
+                                    console.log(xhr, resp, text);
+                                }
+                            })
+                        });
+
             $("#registrationLink").on("click", function(e) {
                 e.preventDefault();
                 $("#registerDiv").hide();
@@ -35,4 +59,6 @@ $(document).ready(function(){
                 $("#loginDiv").hide();
                 $("#registerDiv").show();
              });
+
+
         });
