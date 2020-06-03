@@ -1,4 +1,11 @@
 $(document).ready(function(){
+
+    function storeCookie(data) {
+        //var token = result.accessToken;
+        console.log(data["accessToken"]);
+        Cookies.set('accessToken', data["accessToken"], { expires: 1, path: '/', sameSite: 'lax'});
+    };
+
             // click on button submit
             $("#loginForm").on("submit", function(e){
                 e.preventDefault();
@@ -10,12 +17,13 @@ $(document).ready(function(){
                     url: '/api/auth/signin', // url where to submit the request
                     type : "POST", // type of action POST || GET
                     dataType : 'json', // data type
-                        contentType:"application/json; charset=utf-8",
+                    contentType:"application/json; charset=utf-8",
                     data : JSON.stringify(loginRequest), // post data || get data
                     success : function(result) {
                         //$("#loginDiv").hide();
                         // you can see the result from the console
                         // tab of the developer tools
+                        storeCookie(result);
                         console.log(result);
                     },
                     error: function(xhr, resp, text) {
