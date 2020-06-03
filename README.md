@@ -1,5 +1,5 @@
 # Pepper Garden App
-This com.connellboyce.peppergarden.repository is based on the Pepper Garden App written in Java.
+This repository is based on the Pepper Garden App written in Java.
 
 ## Table of Contents
 1. [Installation](#Installation)
@@ -10,6 +10,7 @@ This com.connellboyce.peppergarden.repository is based on the Pepper Garden App 
 6. [Project-Notes](#Project-Notes)
 7. [Project-Timeline](#Project-Timeline)
 8. [Resources-Used](#Resources-Used)
+9. [Further-Documentation](#Further-Documentation)
 
 
 ### **Installation**
@@ -145,4 +146,10 @@ When finished, use your IDE's stop button to terminate the process.
 
 
 ### **Resources-Used**
-[Bezkoder - Spring Boot Token based Authentication with Spring Security & JWT](https://bezkoder.com/spring-boot-jwt-authentication/)
+* [Bezkoder - Spring Boot Token based Authentication with Spring Security & JWT](https://bezkoder.com/spring-boot-jwt-authentication/)
+
+
+### **Further-Documentation**
+* [Spring Security](documentation/SPRING_SECURITY.md)
+* [Mongo DB](documentation/MONGODB.md)
+* [JWT](documentation/JWT.md)
