@@ -122,6 +122,7 @@ When finished, use your IDE's stop button to terminate the process.
 	* Spring Security Test
 	* Spring Boot Starter Thymeleaf
 	* Spring Boot DevTools
+	* Spring Boot Starter Validation
 * io.jsonwebtoken
 	* JJWT
 * javax.validation
