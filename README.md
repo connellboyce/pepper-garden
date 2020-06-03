@@ -21,7 +21,7 @@ $ git clone https://github.com/connellboyce/pepper-garden.git
 ### **Components**
 * Java 14
 * SpringBoot 2.3.0
-* Maven
+* Maven 3.6.3
 * RESTful APIs
 * MongoDB Atlas
 
@@ -115,6 +115,9 @@ $ git clone https://github.com/connellboyce/pepper-garden.git
 * Spring Security set up through MongoDB with 3 possible roles
 	* Moderator, User, Admin
 * UI Handled with Thymeleaf and Bootstrap
+* MongoDB connection handled through MongoDB cloud (Atlas).
 
 ### **Project-Timeline**
+* 06/01/2020: Initial Spring setup and Spring Security Configuration with MongoDB
+* 06/02/2020: Continued Spring Security Config. and initial Thymeleaf setup
 * 06/15/2020: Official start of project
