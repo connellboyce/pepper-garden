@@ -12,18 +12,36 @@ This com.connellboyce.peppergarden.repository is based on the Pepper Garden App 
 
 
 ### **Installation**
-Clone the com.connellboyce.peppergarden.repository
+Clone the repository
 ```bash
 $ git clone https://github.com/connellboyce/pepper-garden.git
 ```
+
+Open the project in an IDE and use Maven to clean and install.
+```bash
+$ mvn clean
+```
+```bash
+$ mvn install
+```
+
+Still using your IDE, run the project through Maven and Spring Boot.
+```bash
+$ mvn spring-boot run
+```
+Do NOT run the project through the command line, or it will likely require a computer to restart or shut down to terminate the process.
+
+When finished, use your IDE's stop button to terminate the process.
 
 
 ### **Components**
 * Java 14
 * SpringBoot 2.3.0
+* Spring Security
 * Maven 3.6.3
 * RESTful APIs
 * MongoDB Atlas
+* Web Tokens
 
 
 ### **Features**
