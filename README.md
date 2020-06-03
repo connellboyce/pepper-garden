@@ -9,6 +9,7 @@ This com.connellboyce.peppergarden.repository is based on the Pepper Garden App 
 5. [Dependencies](#Dependencies)
 6. [Project-Notes](#Project-Notes)
 7. [Project-Timeline](#Project-Timeline)
+8. [Resources-Used](#Resources-Used)
 
 
 ### **Installation**
@@ -42,6 +43,7 @@ When finished, use your IDE's stop button to terminate the process.
 * RESTful APIs
 * MongoDB Atlas
 * Web Tokens
+* Bootstrap CDN
 
 
 ### **Features**
@@ -140,3 +142,7 @@ When finished, use your IDE's stop button to terminate the process.
 * 06/01/2020: Initial Spring setup and Spring Security Configuration with MongoDB
 * 06/02/2020: Continued Spring Security Config. and initial Thymeleaf setup
 * 06/15/2020: Official start of project
+
+
+### **Resources-Used**
+[Bezkoder - Spring Boot Token based Authentication with Spring Security & JWT](https://bezkoder.com/spring-boot-jwt-authentication/)
