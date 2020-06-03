@@ -4,6 +4,7 @@ $(document).ready(function(){
         //var token = result.accessToken;
         console.log(data["accessToken"]);
         Cookies.set('accessToken', data["accessToken"], { expires: 1, path: '/', sameSite: 'lax'});
+        Cookies.set('username', data["username"], { expires: 1, path: '/', sameSite: 'lax'});
     };
 
             // click on button submit
@@ -24,6 +25,7 @@ $(document).ready(function(){
                         // you can see the result from the console
                         // tab of the developer tools
                         storeCookie(result);
+                        window.location="/dashboard";
                         console.log(result);
                     },
                     error: function(xhr, resp, text) {
