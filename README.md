@@ -57,11 +57,11 @@ When finished, use your IDE's stop button to terminate the process.
 
 
 ### **Tasks**
-- [ ] Basic SpringBoot Project Initialization
-    - [ ] Maven Functionality
-    - [ ] MongoDB pairing
-    - [ ] Dependencies Declared
-    - [ ] Set up start/stop for server hosting
+- [x] Basic SpringBoot Project Initialization
+    - [x] Maven Functionality
+    - [x] MongoDB pairing
+    - [x] Dependencies Declared
+    - [x] Set up start/stop for server hosting
 - [ ] UI / UX
     - [ ] Login Page
         - [ ] Login/Register Account
@@ -90,9 +90,9 @@ When finished, use your IDE's stop button to terminate the process.
         - [ ] PUT
         - [ ] DELETE
     - [ ] MongoDB
-        - [ ] Create new user
+        - [x] Create new user
         - [ ] Update fields
-        - [ ] Login Authentication
+        - [x] Login Authentication
     - [ ] Project Functionality
         - [ ] "Lesson Learned"
             - [ ] Post "Lesson Learned"
@@ -134,6 +134,7 @@ When finished, use your IDE's stop button to terminate the process.
 	* Moderator, User, Admin
 * UI Handled with Thymeleaf and Bootstrap
 * MongoDB connection handled through MongoDB cloud (Atlas).
+* Dependencies Jakarta XML Bind-API and JAXB Runtime are to resolve a Java 14 issue where a class could not be found.
 
 ### **Project-Timeline**
 * 06/01/2020: Initial Spring setup and Spring Security Configuration with MongoDB
