@@ -210,7 +210,7 @@ $(document).ready(function(){
                 showDashboard();
                 var name = localStorage.getItem('username');
                 $("#userdisplay").text(name);
-                    console.log(result);
+                console.log(result);
             },
             error : function(xhr, resp, text) {
                 console.log(xhr, resp, text);
@@ -224,8 +224,8 @@ $(document).ready(function(){
 
     function showDashboard() {
         $("#dashboardDiv").show();
-        var name = localStorage.getItem('username');
-        $("#userdisplay").text(name);
+        let name = localStorage.getItem('username');
+        $("#dashboardUsername").text(name);
     };
     
     function showLogin() {
