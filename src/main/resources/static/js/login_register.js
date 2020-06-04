@@ -108,6 +108,7 @@ $(document).ready(function(){
     });
 
     $("#dashNav").on("click", function(e) {
+        e.preventDefault();
         $.ajax({
             url: "/dashboard",
             type: "GET",
@@ -120,7 +121,67 @@ $(document).ready(function(){
                 showDashboard();
                 var name = localStorage.getItem('username');
                 $("#userdisplay").text(name);
-                    console.log(result);
+                console.log(result);
+            },
+            error : function(xhr, resp, text) {
+                console.log(xhr, resp, text);
+            }
+        })
+    });
+
+    $("#dictionaryNav").on("click", function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "/dictionary",
+            type: "GET",
+            beforeSend: function (xhr){
+                xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+            },
+            success : function(result) {
+                $("#dictionaryDiv").html(result);
+                hideAllMainPanels();
+                showDictionary();
+                console.log(result);
+            },
+            error : function(xhr, resp, text) {
+                console.log(xhr, resp, text);
+            }
+        })
+    });
+
+    $("#contactNav").on("click", function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "/contact",
+            type: "GET",
+            beforeSend: function (xhr){
+                xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+            },
+            success : function(result) {
+                $("#contactDiv").html(result);
+                hideAllMainPanels();
+                showContact();
+                console.log(result);
+            },
+            error : function(xhr, resp, text) {
+                console.log(xhr, resp, text);
+            }
+        })
+    });
+
+    $("#profileNav").on("click", function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "/profile",
+            type: "GET",
+            beforeSend: function (xhr){
+                xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+            },
+            success : function(result) {
+                $("#profileDiv").html(result);
+                hideAllMainPanels();
+                showProfile();
+                console.log(result);
             },
             error : function(xhr, resp, text) {
                 console.log(xhr, resp, text);
@@ -141,7 +202,7 @@ $(document).ready(function(){
                 showDashboard();
                 var name = localStorage.getItem('username');
                 $("#userdisplay").text(name);
-                    console.log(result);
+                console.log(result);
             },
             error : function(xhr, resp, text) {
                 console.log(xhr, resp, text);
@@ -155,11 +216,26 @@ $(document).ready(function(){
 
     function showDashboard() {
         $("#dashboardDiv").show();
-        var name = localStorage.getItem('username');
-        $("#userdisplay").text(name);
+        let name = localStorage.getItem('username');
+        $("#dashboardUsername").text(name);
     };
     
     function showLogin() {
         $("#loginDiv").show();
+    };
+
+    function showDictionary() {
+        $("#dictionaryDiv").show();
+    };
+
+    function showContact() {
+        $("#contactDiv").show();
+    };
+
+    function showProfile() {
+        $("#profileDiv").show();
+        let name = localStorage.getItem('username');
+        console.log(name);
+        $("#profileUsername").text(name);
     };
 });
