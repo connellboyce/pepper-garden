@@ -18,6 +18,27 @@ public class DashboardController {
         return "dashboard";
     }
 
+    @GetMapping("/dictionary")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public String dictionaryPage(Model model) {
+        model.addAttribute("appName", appName);
+        return "dictionary";
+    }
+
+    @GetMapping("/contact")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public String contactPage(Model model) {
+        model.addAttribute("appName", appName);
+        return "contact";
+    }
+
+    @GetMapping("/profile")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public String profilePage(Model model) {
+        model.addAttribute("appName", appName);
+        return "profile";
+    }
+
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ADMIN')")
     public String adminPage(Model model) {

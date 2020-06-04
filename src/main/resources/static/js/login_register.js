@@ -142,9 +142,9 @@ $(document).ready(function(){
                 xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
             },
             success : function(result) {
-                $("#dictionaryDiv").html(result);
+                $("#dashboardDiv").html(result);
                 hideAllMainPanels();
-                showDictionary();
+                showDashboard();
                 console.log(result);
             },
             error : function(xhr, resp, text) {
@@ -164,9 +164,9 @@ $(document).ready(function(){
                 xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
             },
             success : function(result) {
-                $("#contactDiv").html(result);
+                $("#dashboardDiv").html(result);
                 hideAllMainPanels();
-                showContact();
+                showDashboard();
                 console.log(result);
             },
             error : function(xhr, resp, text) {
@@ -186,9 +186,9 @@ $(document).ready(function(){
                 xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
             },
             success : function(result) {
-                $("#profileDiv").html(result);
+                $("#dashboardDiv").html(result);
                 hideAllMainPanels();
-                showProfile();
+                showDashboard();
                 console.log(result);
             },
             error : function(xhr, resp, text) {
@@ -225,7 +225,7 @@ $(document).ready(function(){
     function showDashboard() {
         $("#dashboardDiv").show();
         var name = localStorage.getItem('username');
-        $("#userdisplay").text(name);
+        $(".userdisplay").text(name);
     };
     
     function showLogin() {
