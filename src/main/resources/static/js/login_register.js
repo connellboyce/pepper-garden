@@ -58,13 +58,13 @@ $(document).ready(function(){
                             })
                         });
 
-            $("#registrationLink").on("click", function(e) {
+            $("#loginLink").on("click", function(e) {
                 e.preventDefault();
                 $("#registerDiv").hide();
                 $("#loginDiv").show();
             });
 
-            $("#loginLink").on("click", function(e) {
+            $("#registerLink").on("click", function(e) {
                 e.preventDefault();
                 $("#loginDiv").hide();
                 $("#registerDiv").show();
