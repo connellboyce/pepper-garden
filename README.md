@@ -8,7 +8,6 @@ This repository is based on the Pepper Garden App written in Java.
 4. [Tasks](#Tasks)
 5. [Dependencies](#Dependencies)
 6. [Project-Notes](#Project-Notes)
-7. [Project-Timeline](#Project-Timeline)
 8. [Resources-Used](#Resources-Used)
 9. [Further-Documentation](#Further-Documentation)
 
@@ -67,7 +66,7 @@ When finished, use your IDE's stop button to terminate the process.
     - [x] Set up start/stop for server hosting
 - [ ] UI / UX
     - [ ] Login Page
-        - [ ] Login/Register Account
+        - [x] Login/Register Account
         - [ ] Recover password
         - [ ] Aesthetic design
     - [ ] Dashboards
@@ -110,6 +109,11 @@ When finished, use your IDE's stop button to terminate the process.
             - [ ] Edit new pepper information
             - [ ] Delete new pepper information
         - [ ] Manageable permissions to POST/PUT/DELETE
+    - [x] Spring Security
+        - [x] JWT
+        - [x] Security Controllers
+        - [x] Security Payload Models
+        - [x] Security Services 
 
 
 ### **Dependencies**
@@ -117,12 +121,12 @@ When finished, use your IDE's stop button to terminate the process.
 	* Spring Boot Starter Data MongoDB
 	* Spring Boot Starter Security
 	* Spring Boot Starter Web
+	* Spring Boot Starter Thymeleaf
+	* Spring Boot Starter Validation
 	* Spring Boot Starter Test
 		* Excludes: JUnit Vintage Engine
 	* Spring Security Test
-	* Spring Boot Starter Thymeleaf
 	* Spring Boot DevTools
-	* Spring Boot Starter Validation
 * io.jsonwebtoken
 	* JJWT
 * javax.validation
@@ -140,17 +144,14 @@ When finished, use your IDE's stop button to terminate the process.
 * MongoDB connection handled through MongoDB cloud (Atlas).
 * Dependencies Jakarta XML Bind-API and JAXB Runtime are to resolve a Java 14 issue where a class could not be found.
 
-### **Project-Timeline**
-* 06/01/2020: Initial Spring setup and Spring Security Configuration with MongoDB
-* 06/02/2020: Continued Spring Security Config. and initial Thymeleaf setup
-* 06/15/2020: Official start of project
-
 
 ### **Resources-Used**
 * [Bezkoder - Spring Boot Token based Authentication with Spring Security & JWT](https://bezkoder.com/spring-boot-jwt-authentication/)
 
 
 ### **Further-Documentation**
+* [Project Timeline](documentation/TASKS_TIMELINE.md)
 * [Spring Security](documentation/SPRING_SECURITY.md)
-* [Mongo DB](documentation/MONGODB.md)
 * [JWT](documentation/JWT.md)
+* [Thymelead](documentation/THYMELEAF.md)
+* [Mongo DB](documentation/MONGODB.md)
