@@ -3,4 +3,3 @@
 * 06/02/2020: Continued Spring Security Config. and initial Thymeleaf setup
 * 06/03/2020: Added login/register UIs and functionality; minor bug fixes; first uses of cookies implemented
 * 06/04/2020: 
-* 06/15/2020: Official start of project
