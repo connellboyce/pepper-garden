@@ -197,6 +197,16 @@ $(document).ready(function(){
         })
     });
 
+    $("#logoutNav").on("click", function(e) {
+        e.preventDefault();
+
+        localStorage.clear();
+        Cookies.remove('accessToken');
+        Cookies.remove('userName');
+
+        location.reload(true);
+    });
+
     function loadDash() {
         $.ajax({
             url: "/dashboard",
