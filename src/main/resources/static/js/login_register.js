@@ -1,5 +1,27 @@
 $(document).ready(function(){
 
+    function checkLoggedIn() {
+        $.ajax({
+                    url: "/api/test/user",
+                    type: "GET",
+                    beforeSend: function (xhr){
+                        xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+                    },
+                    success : function(result) {
+                        console.log("Logged in!");
+                        hideAllMainPanels();
+                        loadDash();
+                        showDashboard();
+                    },
+                    error : function(xhr, resp, text) {
+                        console.log("Not logged in.");
+                        showLogin();
+                        console.log(xhr, resp, text);
+                    }
+                })
+    };
+    checkLoggedIn();
+
     function storeJWT(data) {
         //var token = result.accessToken;
         console.log(data["accessToken"]);
@@ -46,7 +68,13 @@ $(document).ready(function(){
     $("#registerForm").on("submit", function(e){
         e.preventDefault();
         // send ajax
-        var signupRequest={username: $("#signup_username").val(), email: $("#signup_email").val(), roles: [$("#signup_roles").val()], password: $("#signup_password").val()};
+        var signupRequest={
+        username: $("#signup_username").val(),
+        email: $("#signup_email").val(),
+        roles: [$("#signup_roles").val()],
+        password: $("#signup_password").val()
+        };
+
         console.log("signupRequest = " + signupRequest);
         console.log("SFY " + JSON.stringify(signupRequest));
         $.ajax({
@@ -70,7 +98,7 @@ $(document).ready(function(){
     $("#loginLink").on("click", function(e) {
         e.preventDefault();
         hideAllMainPanels();
-        $("#loginDiv").show();
+        showLogin();
     });
 
     $("#registerLink").on("click", function(e) {
@@ -80,7 +108,6 @@ $(document).ready(function(){
     });
 
     $("#dashNav").on("click", function(e) {
-        e.preventDefault();
         $.ajax({
             url: "/dashboard",
             type: "GET",
@@ -90,10 +117,10 @@ $(document).ready(function(){
             success : function(result) {
                 $("#dashboardDiv").html(result);
                 hideAllMainPanels();
-                $("#dashboardDiv").show();
+                showDashboard();
                 var name = localStorage.getItem('username');
                 $("#userdisplay").text(name);
-                console.log(result);
+                    console.log(result);
             },
             error : function(xhr, resp, text) {
                 console.log(xhr, resp, text);
@@ -101,7 +128,38 @@ $(document).ready(function(){
         })
     });
 
+    function loadDash() {
+        $.ajax({
+            url: "/dashboard",
+            type: "GET",
+            beforeSend: function (xhr){
+                xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+            },
+            success : function(result) {
+                $("#dashboardDiv").html(result);
+                hideAllMainPanels();
+                showDashboard();
+                var name = localStorage.getItem('username');
+                $("#userdisplay").text(name);
+                    console.log(result);
+            },
+            error : function(xhr, resp, text) {
+                console.log(xhr, resp, text);
+            }
+        })
+    };
+
     function hideAllMainPanels() {
         $(".mainPanels").hide();
+    };
+
+    function showDashboard() {
+        $("#dashboardDiv").show();
+        var name = localStorage.getItem('username');
+        $("#userdisplay").text(name);
+    };
+    
+    function showLogin() {
+        $("#loginDiv").show();
     };
 });
