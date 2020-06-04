@@ -69,14 +69,39 @@ $(document).ready(function(){
 
     $("#loginLink").on("click", function(e) {
         e.preventDefault();
-        $("#registerDiv").hide();
+        hideAllMainPanels();
         $("#loginDiv").show();
     });
 
     $("#registerLink").on("click", function(e) {
         e.preventDefault();
-        $("#loginDiv").hide();
+        hideAllMainPanels();
         $("#registerDiv").show();
     });
 
+    $("#dashNav").on("click", function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "/dashboard",
+            type: "GET",
+            beforeSend: function (xhr){
+                xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+            },
+            success : function(result) {
+                $("#dashboardDiv").html(result);
+                hideAllMainPanels();
+                $("#dashboardDiv").show();
+                var name = localStorage.getItem('username');
+                $("#userdisplay").text(name);
+                console.log(result);
+            },
+            error : function(xhr, resp, text) {
+                console.log(xhr, resp, text);
+            }
+        })
+    });
+
+    function hideAllMainPanels() {
+        $(".mainPanels").hide();
+    };
 });
