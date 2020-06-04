@@ -109,6 +109,8 @@ $(document).ready(function(){
 
     $("#dashNav").on("click", function(e) {
         e.preventDefault();
+        removeActiveNavs();
+        $("#dashNav").addClass("active");
         $.ajax({
             url: "/dashboard",
             type: "GET",
@@ -131,6 +133,8 @@ $(document).ready(function(){
 
     $("#dictionaryNav").on("click", function(e) {
         e.preventDefault();
+        removeActiveNavs();
+        $("#dictionaryNav").addClass("active");
         $.ajax({
             url: "/dictionary",
             type: "GET",
@@ -151,6 +155,8 @@ $(document).ready(function(){
 
     $("#contactNav").on("click", function(e) {
         e.preventDefault();
+        removeActiveNavs();
+        $("#contactNav").addClass("active");
         $.ajax({
             url: "/contact",
             type: "GET",
@@ -171,6 +177,8 @@ $(document).ready(function(){
 
     $("#profileNav").on("click", function(e) {
         e.preventDefault();
+        removeActiveNavs();
+        $("#profileNav").addClass("active");
         $.ajax({
             url: "/profile",
             type: "GET",
@@ -237,5 +245,10 @@ $(document).ready(function(){
         let name = localStorage.getItem('username');
         console.log(name);
         $("#profileUsername").text(name);
+    };
+
+    function removeActiveNavs() {
+        $(".nav-link").removeClass("active");
+        $(".nav-item").removeClass("active");
     };
 });
