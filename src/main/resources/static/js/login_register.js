@@ -108,6 +108,9 @@ $(document).ready(function(){
     });
 
     $("#dashNav").on("click", function(e) {
+        e.preventDefault();
+        removeActiveNavs();
+        $("#dashNav").addClass("active");
         $.ajax({
             url: "/dashboard",
             type: "GET",
@@ -120,7 +123,73 @@ $(document).ready(function(){
                 showDashboard();
                 var name = localStorage.getItem('username');
                 $("#userdisplay").text(name);
-                    console.log(result);
+                console.log(result);
+            },
+            error : function(xhr, resp, text) {
+                console.log(xhr, resp, text);
+            }
+        })
+    });
+
+    $("#dictionaryNav").on("click", function(e) {
+        e.preventDefault();
+        removeActiveNavs();
+        $("#dictionaryNav").addClass("active");
+        $.ajax({
+            url: "/dictionary",
+            type: "GET",
+            beforeSend: function (xhr){
+                xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+            },
+            success : function(result) {
+                $("#dictionaryDiv").html(result);
+                hideAllMainPanels();
+                showDictionary();
+                console.log(result);
+            },
+            error : function(xhr, resp, text) {
+                console.log(xhr, resp, text);
+            }
+        })
+    });
+
+    $("#contactNav").on("click", function(e) {
+        e.preventDefault();
+        removeActiveNavs();
+        $("#contactNav").addClass("active");
+        $.ajax({
+            url: "/contact",
+            type: "GET",
+            beforeSend: function (xhr){
+                xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+            },
+            success : function(result) {
+                $("#contactDiv").html(result);
+                hideAllMainPanels();
+                showContact();
+                console.log(result);
+            },
+            error : function(xhr, resp, text) {
+                console.log(xhr, resp, text);
+            }
+        })
+    });
+
+    $("#profileNav").on("click", function(e) {
+        e.preventDefault();
+        removeActiveNavs();
+        $("#profileNav").addClass("active");
+        $.ajax({
+            url: "/profile",
+            type: "GET",
+            beforeSend: function (xhr){
+                xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+            },
+            success : function(result) {
+                $("#profileDiv").html(result);
+                hideAllMainPanels();
+                showProfile();
+                console.log(result);
             },
             error : function(xhr, resp, text) {
                 console.log(xhr, resp, text);
@@ -161,5 +230,25 @@ $(document).ready(function(){
     
     function showLogin() {
         $("#loginDiv").show();
+    };
+
+    function showDictionary() {
+        $("#dictionaryDiv").show();
+    };
+
+    function showContact() {
+        $("#contactDiv").show();
+    };
+
+    function showProfile() {
+        $("#profileDiv").show();
+        let name = localStorage.getItem('username');
+        console.log(name);
+        $("#profileUsername").text(name);
+    };
+
+    function removeActiveNavs() {
+        $(".nav-link").removeClass("active");
+        $(".nav-item").removeClass("active");
     };
 });
