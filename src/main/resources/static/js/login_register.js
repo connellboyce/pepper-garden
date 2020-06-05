@@ -126,6 +126,10 @@ $(document).ready(function(){
                 console.log(result);
             },
             error : function(xhr, resp, text) {
+                if (xhr.status == 401) {
+                    console.log(xhr.status);
+                    showModal("Error Code: " + xhr.status, "Your login token has expired. Please log in.");
+                }
                 console.log(xhr, resp, text);
             }
         })
@@ -148,6 +152,10 @@ $(document).ready(function(){
                 console.log(result);
             },
             error : function(xhr, resp, text) {
+                if (xhr.status == 401) {
+                    console.log(xhr.status);
+                    showModal("Error Code: " + xhr.status, "Your login token has expired. Please log in.");
+                }
                 console.log(xhr, resp, text);
             }
         })
@@ -170,6 +178,10 @@ $(document).ready(function(){
                 console.log(result);
             },
             error : function(xhr, resp, text) {
+                if (xhr.status == 401) {
+                    console.log(xhr.status);
+                    showModal("Error Code: " + xhr.status, "Your login token has expired. Please log in.");
+                }
                 console.log(xhr, resp, text);
             }
         })
@@ -192,6 +204,10 @@ $(document).ready(function(){
                 console.log(result);
             },
             error : function(xhr, resp, text) {
+                if (xhr.status == 401) {
+                    console.log(xhr.status);
+                    showModal("Error Code: " + xhr.status, "Your login token has expired. Please log in.");
+                }
                 console.log(xhr, resp, text);
             }
         })
@@ -261,4 +277,15 @@ $(document).ready(function(){
         $(".nav-link").removeClass("active");
         $(".nav-item").removeClass("active");
     };
+
+    function showModal(modalHeader, modalDisplay) {
+        $("#modalHeader").html(modalHeader);
+        $("#error").html(modalDisplay);
+        $("#closeButton").on("click", function(e) {
+            e.preventDefault();
+            location.reload(true);
+        });
+        $('#errorModal').modal("show");
+    };
+
 });
