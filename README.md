@@ -32,6 +32,11 @@ $ mvn spring-boot run
 ```
 Do NOT run the project through the command line, or it will likely require a computer to restart or shut down to terminate the process.
 
+Navigate to localhost:9999 on your web browser.
+```aidl
+http://localhost:9999
+```
+
 When finished, use your IDE's stop button to terminate the process.
 
 
@@ -70,7 +75,7 @@ When finished, use your IDE's stop button to terminate the process.
         - [ ] Recover password
         - [ ] Aesthetic design
     - [ ] Dashboards
-        - [ ] Navbar
+        - [x] Navbar
         - [ ] Traversible pepper "dictionary"
             - [ ] Sortable by species, zone, alphabetical
         - [ ] "Scrapbook" page
@@ -153,5 +158,5 @@ When finished, use your IDE's stop button to terminate the process.
 * [Project Timeline](documentation/TASKS_TIMELINE.md)
 * [Spring Security](documentation/SPRING_SECURITY.md)
 * [JWT](documentation/JWT.md)
-* [Thymelead](documentation/THYMELEAF.md)
+* [Thymeleaf](documentation/THYMELEAF.md)
 * [Mongo DB](documentation/MONGODB.md)
