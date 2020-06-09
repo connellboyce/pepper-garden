@@ -78,7 +78,7 @@ public class PepperAPIController {
         }
 
         // Create new pepper
-        Pepper pepper = new Pepper(addPepperRequest.getName(), species, addPepperRequest.getMinSHU(), addPepperRequest.getMaxSHU(), addPepperRequest.getOrigin(), addPepperRequest.getDescription());
+        Pepper pepper = new Pepper(addPepperRequest.getName(), species, addPepperRequest.getMinSHU(), addPepperRequest.getMaxSHU(), addPepperRequest.getOrigin(), addPepperRequest.getDescription(), addPepperRequest.getImage());
 
         pepperRepository.save(pepper);
 
@@ -102,6 +102,8 @@ public class PepperAPIController {
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public Pepper getPepperById(@PathVariable("pepperId")String pepperId) {
         Optional<Pepper> pepper = pepperRepository.findById(pepperId);
+
+        //To do: throw 404 not found if else
         return pepper.orElse(null);
     }
 }

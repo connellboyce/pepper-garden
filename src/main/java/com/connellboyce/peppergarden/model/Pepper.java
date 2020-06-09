@@ -24,15 +24,18 @@ public class Pepper {
 
     private String description;
 
+    private String image;
+
     public Pepper() {}
 
-    public Pepper(String name, String species, String minSHU, String maxSHU, String origin, String description) {
+    public Pepper(String name, String species, String minSHU, String maxSHU, String origin, String description, String image) {
         this.name = name;
         this.species = species;
         this.minSHU = minSHU;
         this.maxSHU = maxSHU;
         this.origin = origin;
         this.description = description;
+        this.image = image;
     }
 
     public String getId() {
@@ -91,4 +94,7 @@ public class Pepper {
         this.description = description;
     }
 
+    public String getImage() { return image; }
+
+    public void setImage(String image) { this.image = image; }
 }
