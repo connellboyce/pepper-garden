@@ -5,7 +5,6 @@ import com.connellboyce.peppergarden.payload.request.AddPepperRequest;
 import com.connellboyce.peppergarden.payload.response.MessageResponse;
 import com.connellboyce.peppergarden.repository.PepperRepository;
 import com.connellboyce.peppergarden.repository.SpeciesRepository;
-import com.fasterxml.jackson.core.JsonGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/pepper")
 public class PepperAPIController {
+    private static final Logger logger = LoggerFactory.getLogger(PepperAPIController.class);
+
     @Autowired
     PepperRepository pepperRepository;
 
@@ -78,14 +79,13 @@ public class PepperAPIController {
         }
 
         // Create new pepper
-        Pepper pepper = new Pepper(addPepperRequest.getName(), species, addPepperRequest.getMinSHU(), addPepperRequest.getMaxSHU(), addPepperRequest.getOrigin(), addPepperRequest.getDescription(), addPepperRequest.getImage());
-
+        Pepper pepper = new Pepper(addPepperRequest.getName(), species, addPepperRequest.getMinSHU(), addPepperRequest.getMaxSHU(), addPepperRequest.getOrigin(), addPepperRequest.getDescription(), addPepperRequest.getImageURL());
+        logger.info(pepper.toString());
         pepperRepository.save(pepper);
 
         return ResponseEntity.ok(new MessageResponse("Pepper registered successfully!"));
     }
 
-    private static final Logger logger = LoggerFactory.getLogger(PepperAPIController.class);
     @GetMapping("/")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public List<Pepper> getAllPeppers() {

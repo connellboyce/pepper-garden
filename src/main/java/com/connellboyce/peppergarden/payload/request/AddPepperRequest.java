@@ -17,7 +17,7 @@ public class AddPepperRequest {
 
     private String description;
 
-    private String image;
+    private String imageURL;
 
     public String getName() {
         return name;
@@ -67,7 +67,7 @@ public class AddPepperRequest {
         this.description = description;
     }
 
-    public String getImage() { return image; }
+    public String getImageURL() { return imageURL; }
 
-    public void setImage(String image) { this.image = image; }
+    public void setImageURL(String imageURL) { this.imageURL = imageURL; }
 }
