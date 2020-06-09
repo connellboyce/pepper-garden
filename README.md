@@ -8,8 +8,9 @@ This repository is based on the Pepper Garden App written in Java.
 4. [Tasks](#Tasks)
 5. [Dependencies](#Dependencies)
 6. [Project-Notes](#Project-Notes)
-8. [Resources-Used](#Resources-Used)
-9. [Further-Documentation](#Further-Documentation)
+7. [Resources-Used](#Resources-Used)
+8. [Further-Documentation](#Further-Documentation)
+9. [Related Repositories](#Related-Repositories)
 
 
 ### **Installation**
@@ -90,16 +91,16 @@ When finished, use your IDE's stop button to terminate the process.
         - [ ] Change fields options
         - [ ] Aesthetic design
 - [ ] Backend
-    - [ ] RESTful APIs
-        - [ ] Create base API for pepper information
-        - [ ] POST
-        - [ ] GET
-        - [ ] PUT
-        - [ ] DELETE
-    - [ ] MongoDB
-        - [x] Create new user
-        - [ ] Update fields
-        - [x] Login Authentication
+    - [ ] MongoDB/RESTful APIs
+        - [ ] User
+            - [x] Create new user
+            - [ ] Update fields
+            - [x] Login Authentication
+        - [ ] Peppers
+            - [x] POST
+            - [x] GET
+            - [ ] PUT
+            - [ ] DELETE
     - [ ] Project Functionality
         - [ ] "Lesson Learned"
             - [ ] Post "Lesson Learned"
@@ -109,16 +110,15 @@ When finished, use your IDE's stop button to terminate the process.
             - [ ] Post image
             - [ ] Edit image title/caption
             - [ ] Delete image
-        - [ ] Pepper Information
-            - [ ] Post new pepper information
-            - [ ] Edit new pepper information
-            - [ ] Delete new pepper information
-        - [ ] Manageable permissions to POST/PUT/DELETE
+        - [x] Manageable permissions to POST/PUT/DELETE
     - [x] Spring Security
         - [x] JWT
         - [x] Security Controllers
         - [x] Security Payload Models
         - [x] Security Services 
+    - [x] Other Applications
+        - [x] Web Scraper
+        - [x] JSON Parser/Poster
 
 
 ### **Dependencies**
@@ -160,3 +160,8 @@ When finished, use your IDE's stop button to terminate the process.
 * [JWT](documentation/JWT.md)
 * [Thymeleaf](documentation/THYMELEAF.md)
 * [Mongo DB](documentation/MONGODB.md)
+
+
+### **Related Repositories**
+* [Web Scraper for Extracting Pepper Information](https://github.com/connellboyce/spring-boot-scraper)
+* [Script to Post JSON Array to the Database](https://github.com/connellboyce/Python-API-Poster)
