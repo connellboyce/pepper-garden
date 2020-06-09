@@ -1,7 +1,6 @@
 package com.connellboyce.peppergarden.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.NotBlank;
 
@@ -24,7 +23,7 @@ public class Pepper {
 
     private String description;
 
-    private String image;
+    private String imageURL;
 
     public Pepper() {}
 
@@ -35,7 +34,7 @@ public class Pepper {
         this.maxSHU = maxSHU;
         this.origin = origin;
         this.description = description;
-        this.image = image;
+        this.imageURL = image;
     }
 
     public String getId() {
@@ -94,7 +93,7 @@ public class Pepper {
         this.description = description;
     }
 
-    public String getImage() { return image; }
+    public String getImageURL() { return imageURL; }
 
-    public void setImage(String image) { this.image = image; }
+    public void setImageURL(String imageURL) { this.imageURL = imageURL; }
 }
