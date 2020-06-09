@@ -14,8 +14,7 @@ public class Pepper {
     private String name;
 
     @NotBlank
-    @DBRef
-    private Species species;
+    private String species;
 
     private String minSHU;
 
@@ -27,7 +26,7 @@ public class Pepper {
 
     public Pepper() {}
 
-    public Pepper(String name, Species species, String minSHU, String maxSHU, String origin, String description) {
+    public Pepper(String name, String species, String minSHU, String maxSHU, String origin, String description) {
         this.name = name;
         this.species = species;
         this.minSHU = minSHU;
@@ -52,11 +51,11 @@ public class Pepper {
         this.name = name;
     }
 
-    public Species getSpecies() {
+    public String getSpecies() {
         return species;
     }
 
-    public void setSpecies(Species species) {
+    public void setSpecies(String species) {
         this.species = species;
     }
 
