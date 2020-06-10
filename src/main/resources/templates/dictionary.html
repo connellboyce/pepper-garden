@@ -1,14 +1,16 @@
 <script src="../js/dictionary.js"></script>
-<h1>Welcome to the Pepper Dictionary!</h1>
-<div id="mydata">
-    <table id="myTableData"  border="1" cellpadding="2" class="table">
-        <tr>
-            <th scope=""col>&nbsp;</th>
-            <th scope="col"><b>Name</b></th>
-            <th scope="col"><b>Species</b></th>
-            <th scope="col"><b>Minimum Scoville Range</b></th>
-            <th scope="col"><b>Maximum Scoville Range</b></th>
-            <th scope="col"><b>Origin</b></th>
+<h1>Pepper Dictionary</h1>
+<div id="mydata" class="container">
+    <br>
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <table id="myTableData"  border="1" cellpadding="2" class="table table-striped table-bordered">
+        <tr id="header">
+            <th scope="col">&nbsp;</th>
+            <th scope="col">Name</th>
+            <th scope="col">Species</th>
+            <th scope="col">Scoville Range</th>
+            <th scope="col">Origin</th>
         </tr>
     </table>
     &nbsp;
