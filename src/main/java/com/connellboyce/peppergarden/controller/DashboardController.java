@@ -39,6 +39,13 @@ public class DashboardController {
         return "profile";
     }
 
+    @GetMapping("/pepperdetails")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public String pepperDetailPage(Model model) {
+        model.addAttribute("appName", appName);
+        return "pepperdetails";
+    }
+
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ADMIN')")
     public String adminPage(Model model) {

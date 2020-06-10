@@ -1,0 +1,43 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="container">
+    <div class="container" id="detailDiv" style="display: none">
+        <div class="panel">
+            <div class="card">
+                <h4 class="card-header" id="pepperName"></h4>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td>
+                                <span id="pepperImage"></span>
+                            </td>
+                            <td>
+                                <table class="table" id="pepperDetailTable">
+                                    <tr>
+                                        <th>Species:</th>
+                                        <td><span id="pepperSpecies"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Scoville Range:</th>
+                                        <td><span id="pepperScoville"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Origin:</th>
+                                        <td><span id="pepperOrigin"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Description:</th>
+                                        <td>
+                                            <div id="pepperDescription"></div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/js/pepperdetails.js}"></script>
+</html>
