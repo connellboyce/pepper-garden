@@ -56,6 +56,7 @@ $(document).ready(function(){
                 //$("#loginDiv").hide();
                 // you can see the result from the console
                 // tab of the developer tools
+                location.reload(true);
                 storeJWT(result);
                 console.log(result);
             },
