@@ -81,3 +81,22 @@ body {
 	table.table td .add {
 		display: none;
 	}
+
+#dictionaryDiv {
+    display:none;
+}
+#detailDiv {
+    display:none;
+}
+#loginDiv {
+    display:none;
+}
+#registerDiv {
+    display:none;
+}
+#dashboardDiv {
+    display:none;
+}
+#actionsCell {
+    width: 83px;
+}
