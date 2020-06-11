@@ -9,7 +9,7 @@ $(document).ready(function(){
                                 $("#pepperImage").html('<img src="'+result.imageURL+'" style="width: 400px"/>')
                                 $("#pepperName").html('<b>'+result.name+'</b');
                                 $("#pepperSpecies").html("Capsicum " + result.species);
-                                $("#pepperScoville").html(result.minSHU + "-" + result.maxSHU);
+                                $("#pepperScoville").html(result.minSHU.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "-" + result.maxSHU.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
                                 $("#pepperOrigin").html(result.origin);
                                 $("#pepperDescription").html(result.description);
                                 $("#detailDiv").fadeIn();

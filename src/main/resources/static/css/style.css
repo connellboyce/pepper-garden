@@ -84,9 +84,6 @@ body {
     background-attachment: fixed;
     background-size: cover;
 }
-#dictionaryDiv {
-    display:none;
-}
 #detailDiv {
     display:none;
 }
@@ -101,4 +98,10 @@ body {
 }
 #actionsCell {
     width: 83px;
+}
+.paper-body {
+    background-image: url('../images/whitepaper.jpg');
+}
+.card-header {
+    background-image: url('../images/brownpaper.jpg');
 }
