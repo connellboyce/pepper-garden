@@ -1,22 +1,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div id="dictionaryDiv">
 <h1>Pepper Dictionary</h1>
-<div id="mydata" class="container">
     <br>
     <input class="form-control" id="myInput" type="text" placeholder="Search..">
     <br>
-    <table id="myTableData"  border="1" cellpadding="2" class="table table-striped table-bordered">
+    <table id="myTableData"  border="1" cellpadding="2" class="table table-striped table-bordered" >
         <tr id="header">
             <th scope="col">&nbsp;</th>
             <th scope="col">Name</th>
             <th scope="col">Species</th>
             <th scope="col">Scoville Range</th>
             <th scope="col">Origin</th>
-            <th scope="col" style="width: 117px;">Actions &nbsp;</th>
-            <th scope="col" style="display:none;"></th>
+            <th scope="col"  id="actionsCell">Actions &nbsp;</th>
         </tr>
     </table>
-    &nbsp;
 </div>
-
 <script type="text/javascript" th:src="@{/js/dictionary.js}"></script>
 </html>

@@ -12,7 +12,7 @@ $(document).ready(function(){
                                 $("#pepperScoville").html(result.minSHU + "-" + result.maxSHU);
                                 $("#pepperOrigin").html(result.origin);
                                 $("#pepperDescription").html(result.description);
-                                $("#detailDiv").show();
+                                $("#detailDiv").fadeIn();
                             },
                             error : function(xhr, resp, text) {
                                 if (xhr.status == 401) {

@@ -10,6 +10,7 @@ $(document).ready(function() {
         },
         success: function(result) {
             loadTable(result);
+            $("#dictionaryDiv").fadeIn();
         },
         error: function(xhr, resp, text) {
             console.log(xhr, resp, text);
