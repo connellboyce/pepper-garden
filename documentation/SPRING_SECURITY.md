@@ -32,7 +32,7 @@ This web app's security is handled through the Spring Security dependency. It wo
     * Tests if client has access to "admin" clearance level content
 
 ### **Authentication Flow:**
-!["authentication-flow"](../images/misc/securityflow.png)
+!["authentication-flow"](../img/misc/securityflow.png)
 Credit: [Bezkoder](https://bezkoder.com/spring-boot-jwt-authentication/)
 
 ##### Summary

@@ -250,7 +250,7 @@ $(document).ready(function(){
     };
 
     function showDashboard() {
-        $("#dashboardDiv").show();
+        $("#dashboardDiv").fadeIn();
         var name = localStorage.getItem('username');
         $(".userdisplay").text(name);
     };
