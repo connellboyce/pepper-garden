@@ -105,3 +105,6 @@ body {
 .card-header {
     background-image: url('../images/brownpaper.jpg');
 }
+.errorField {
+    color: red;
+}
