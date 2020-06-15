@@ -106,5 +106,9 @@ body {
     background-image: url('../images/brownpaper.jpg');
 }
 .errorField {
-    color: red;
+    color: #ff0000;
+}
+#dashboardTable {
+    width: 100%;
+    horiz-align: center;
 }
