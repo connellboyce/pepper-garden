@@ -110,22 +110,22 @@
                             <div class="alert alert-info">You have been logged out.</div>
                         </div>
                         <div class="form-group">
-                            <label for="signup_username">Username</label>: <input type="text" id="signup_username"
+                            <span><label for="signup_username">Username</label>: <input type="text" id="signup_username"
                                                                                   name="username"
                                                                                   class="form-control"
                                                                                   autofocus="autofocus"
-                                                                                  placeholder="Username"/>
+                                                                                        placeholder="Username"/><span id="error_username" class="errorField"></span></span>
                         </div>
                         <div class="form-group">
-                            <label for="signup_password">Password</label>: <input type="password" id="signup_password"
+                            <span><label for="signup_password">Password</label>: <input type="password" id="signup_password"
                                                                                   name="password"
                                                                                   class="form-control"
-                                                                                  placeholder="Password"/>
+                                                                                  placeholder="Password"/><span id="error_password" class="errorField"></span></span>
                         </div>
 
                         <div class="form-group">
-                            <label for="signup_email">e-Mail</label>: <input type="email" id="signup_email" name="email"
-                                                                             class="form-control" placeholder="e-Mail"/>
+                            <span><label for="signup_email">e-Mail</label>: <input type="email" id="signup_email" name="email"
+                                                                                   class="form-control" placeholder="e-Mail"/><span id="error_email" class="errorField"></span></span>
                         </div>
                         <div class="form-group">
                             <div class="row">
@@ -139,6 +139,7 @@
                             <span>Already a user? <a href="" id="loginLink">Login Here </a></span>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>

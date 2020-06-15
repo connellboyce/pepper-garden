@@ -91,7 +91,32 @@ $(document).ready(function(){
                 console.log(result);
             },
             error: function(xhr, resp, text) {
-                console.log(xhr, resp, text);
+                $(".errorField").html("");
+                if (JSON.parse(xhr.responseText).errors != null) {
+                    let field = JSON.parse(xhr.responseText).errors[0].field;
+                    let errorMessage = JSON.parse(xhr.responseText).errors[0].defaultMessage;
+                    if (field === "password") {
+                        $("#error_password").html(errorMessage);
+                    }
+                    console.log(field + " has error: " + errorMessage);
+                } else if (JSON.parse(xhr.responseText).message != null) {
+                    let errorMessage = JSON.parse(xhr.responseText).message;
+                    errorMessage = errorMessage.replace("Error: ", "");
+                    let field = "";
+                    if (errorMessage.includes("Email") || errorMessage.includes("email")) {
+                        field = "email";
+                    } else if (errorMessage.includes("Username") || errorMessage.includes("username")) {
+                        field = "username";
+                    }
+                    if (field === "username") {
+                        $("#error_username").html(errorMessage);
+                    } else if (field === "email") {
+                        $("#error_email").html(errorMessage);
+                    }
+                    console.log(field + " has error: " + errorMessage);
+                }
+
+
             }
         })
     });

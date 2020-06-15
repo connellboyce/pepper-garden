@@ -1,1 +1,3 @@
-docker build --tag=pepper-garden:latest .
+IMAGE="pepper-garden:latest"
+
+docker build --tag=${IMAGE} .
