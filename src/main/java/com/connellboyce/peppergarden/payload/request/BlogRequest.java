@@ -16,6 +16,8 @@ public class BlogRequest {
     private String body;
     private Date date = new Date();
     private Set<String> tags = new HashSet<>();
+    @NotNull
+    private String poster;
 
     public String getSlug() {
         return slug;
@@ -55,5 +57,13 @@ public class BlogRequest {
 
     public void setTags(Set<String> tags) {
         this.tags = tags;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
     }
 }
