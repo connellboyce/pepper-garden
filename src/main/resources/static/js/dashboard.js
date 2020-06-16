@@ -19,14 +19,58 @@ $(document).ready(function(){
     })
 
     function loadPosts(array) {
-        for (var i = 0; i < array.length; i++) {
+        for (var i = array.length-1; i >= 0; i--) {
             var obj = array[i];
 
             var table = document.getElementById("dashboardTable");
             var rowCount = table.rows.length;
             var row = table.insertRow(rowCount);
 
-            row.insertCell(0).innerHTML = '<br><div class="card"><div class="card-header">'+obj.title+'</div><div class="card-body">'+obj.body+'</div></div>';
+            row.insertCell(0).innerHTML = '<br><div class="card"><div class="card-header"><h4>'+obj.title+'</h4><p>User: '+obj.poster+' - '+obj.date+'</p></div><div class="card-body">'+obj.body+'</div></div>';
         }
     }
+
+    $("#openBlogForm").on("click", function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: "/blogform",
+            type: "GET",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+            },
+            success: function (result) {
+                $("#dashboardDiv").html(result);
+                hideAllMainPanels();
+                showDashboard();
+                console.log(result);
+            },
+            error: function (xhr, resp, text) {
+                if (xhr.status == 401) {
+                    console.log(xhr.status);
+                    showModal("Error Code: " + xhr.status, "Your login token has expired. Please log in.");
+                }
+                console.log(xhr, resp, text);
+            }
+        })
+    });
+
+    function showModal(modalHeader, modalDisplay) {
+        $("#modalHeader").html(modalHeader);
+        $("#error").html(modalDisplay);
+        $("#closeButton").on("click", function (e) {
+            e.preventDefault();
+            location.reload(true);
+        });
+        $('#errorModal').modal("show");
+    };
+
+    function hideAllMainPanels() {
+        $(".mainPanels").hide();
+    };
+
+    function showDashboard() {
+        $("#dashboardDiv").fadeIn();
+        var name = localStorage.getItem('username');
+        $(".userdisplay").text(name);
+    };
 });

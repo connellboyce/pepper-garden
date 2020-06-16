@@ -27,14 +27,18 @@ public class BlogPost {
     private Date date = new Date();
     private Set<String> tags = new HashSet<>();
 
+    @NotNull
+    private String poster;
+
     public BlogPost(){}
 
     @PersistenceConstructor
-    public BlogPost(String slug, String title, String body, Set<String> tags){
+    public BlogPost(String slug, String title, String body, Set<String> tags, String poster){
         this.title = title;
         this.slug = slug;
         this.body = body;
         this.tags = tags;
+        this.poster = poster;
     }
 
     public String getId() {
@@ -83,6 +87,14 @@ public class BlogPost {
 
     public void setTags(Set<String> tags) {
         this.tags = tags;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
     }
 
     @Override

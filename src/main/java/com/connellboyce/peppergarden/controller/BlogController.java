@@ -26,7 +26,7 @@ public class BlogController {
 
     @PostMapping("/add")
     public ResponseEntity<?> makePost(@Valid @RequestBody BlogRequest blogRequest) {
-        BlogPost blogPost = new BlogPost(blogRequest.getSlug(), blogRequest.getTitle(), blogRequest.getBody(), blogRequest.getTags());
+        BlogPost blogPost = new BlogPost(blogRequest.getSlug(), blogRequest.getTitle(), blogRequest.getBody(), blogRequest.getTags(), blogRequest.getPoster());
         logger.info(blogPost.toString());
         blogRepository.save(blogPost);
 

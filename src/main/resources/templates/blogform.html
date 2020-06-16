@@ -1,0 +1,18 @@
+<div id="blogFormDiv">
+    <div class="panel">
+        <div class="card">
+            <form id="blogform">
+                <div class="card-header">
+                    <label for="formtitle">Title:</label><br>
+                    <input type="text" id="formtitle" name="formtitle" placeholder="Title">
+                </div>
+                <div class="card-body">
+                    <label for="formbody">Content:</label><br>
+                    <textarea rows="4" cols="50" id="formbody" name="formbody" form="blogform"></textarea> <br>
+                    <button type="button" id="blogSubmit" onclick="postBlog();">Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="../js/blogform.js"></script>
