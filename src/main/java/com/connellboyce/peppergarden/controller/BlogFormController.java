@@ -8,13 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class BlogFormController {
-    @Value("Pepper Garden")
-    String appName;
-
     @GetMapping("/blogform")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public String homePage(Model model) {
-        model.addAttribute("appName", appName);
         return "blogform";
     }
 }
