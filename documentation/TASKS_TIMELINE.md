@@ -8,3 +8,12 @@ Week 1:
 
 Week 2:
 * 06/08/2020: Adding concurrency to the web scraper
+* 06/09/2020: Initialized and added GET functionality to a Pepper API
+* 06/10/2020: Created a table for the Pepper Dictionary and populated it with the information from the Pepper API; Added a search filter; Added a button to each table row.
+* 06/11/2020: Updated UI elements for better aesthetics
+* 06/12/2020: Dockerized project
+
+Week 3:
+* 06/15/2020: Added validation display to register form and created an API for blog posts
+* 06/16/2020: Pushed image to AWS and added form to add a blog post
+* 06/17/2020: Implemented Spring Actuator with custom info endpoint and created services to consume an external API

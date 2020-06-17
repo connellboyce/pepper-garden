@@ -160,6 +160,8 @@ When finished, use your IDE's stop button to terminate the process.
 * [JWT](documentation/JWT.md)
 * [Thymeleaf](documentation/THYMELEAF.md)
 * [Mongo DB](documentation/MONGODB.md)
+* [AWS and Docker](documentation/AWS_and_DOCKER.md)
+* [Creating a Service that will Consume an External API](documentation/USING_AN_EXTERNAL_API.md)
 
 
 ### **Related Repositories**
