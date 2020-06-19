@@ -66,6 +66,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/index.html").permitAll()
                 //.antMatchers("/api/pepper/**").permitAll()
                 .antMatchers("/actuator/**").permitAll()
+                .antMatchers("/api/photo/**").permitAll()
+                .antMatchers("/photos/**").permitAll()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .anyRequest().authenticated();
 
