@@ -19,7 +19,6 @@ $(document).ready(function() {
 
     $("#updateProfileButton").on("click", function(e) {
         var userID = null;
-        console.log(localStorage.getItem('username'))
         $.ajax({
             url: "/api/auth/get/"+localStorage.getItem('username'),
             type: "GET",
@@ -29,8 +28,8 @@ $(document).ready(function() {
             },
             success: function (result) {
                 userID = result;
-                $("#userID-input").val(userID);
-                $("#readabledescription-input").val($.trim($("#description-input").val()))
+                $("#id-input").val(userID);
+                $("#description-input").val($.trim($("#unfiltered-description-input").val()))
                 $.ajax({
                     url: "/api/profiles/profile/add",
                     type: "POST",

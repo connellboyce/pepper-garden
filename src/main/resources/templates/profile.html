@@ -4,7 +4,7 @@
             <h1 class="card-header">Welcome to your Profile, <span class="userdisplay"></span>!</h1>
             <div class="card-body">
                 <form method="POST" action="/api/userProfile/photos/add" enctype="multipart/form-data" id="profileForm">
-                    <input type="text" name="userID" id="userID-input" style="display: none">
+                    <input type="text" name="id" id="id-input" style="display: none">
 
                     <label for="image-input">Profile Picture:</label><br>
                     <input type="file" name="image" id="image-input" accept="image/*" /><br>
@@ -13,11 +13,11 @@
                     <input type="text" name="zipCode" id="zipCode-input">
                     <br><br>
                     <label for="hardinessZone-input">Hardiness Zone:</label><br>
-                    <input type="text" name="hardinessZone" id="hardinessZone-input" style="color: green" readonly><br>
+                    <input type="text" name="hardinessZone" id="hardinessZone-input" style="color: green; background-color: lightgrey" readonly><br>
                     <br>
                     <label for="description-input">Description:</label><br>
-                    <textarea form="profileForm" rows="4" cols="50" id="description-input" name="description" placeholder="Enter something about yourself here..."></textarea><br>
-                    <input type="text" name="readabledescription" id="readabledescription-input" style="display: none">
+                    <input type="text" name="description" id="description-input" style="display: none">
+                    <textarea form="profileForm" rows="4" cols="50" id="unfiltered-description-input" name="unfiltered-description" placeholder="Enter something about yourself here..."></textarea><br>
                     <br>
                     <button type="button" id="updateProfileButton" disabled>Update</button>
                 </form>

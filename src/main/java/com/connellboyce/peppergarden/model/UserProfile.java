@@ -4,21 +4,21 @@ import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Document(collection="user-profile")
 public class UserProfile {
     @Id
-    private String id;
-
     @NotNull
-    private String userID;
+    @NotBlank
+    private String id;
 
     private String zipCode;
 
     private String hardinessZone;
 
-    private String descripton;
+    private String description;
 
     private Binary image;
 
@@ -38,14 +38,6 @@ public class UserProfile {
         this.image = image;
     }
 
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
     public String getZipCode() {
         return zipCode;
     }
@@ -63,10 +55,10 @@ public class UserProfile {
     }
 
     public String getDescription() {
-        return descripton;
+        return description;
     }
 
     public void setDescription(String description) {
-        this.descripton = descripton;
+        this.description = description;
     }
 }

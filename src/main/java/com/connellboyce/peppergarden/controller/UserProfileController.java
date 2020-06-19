@@ -19,8 +19,7 @@ public class UserProfileController {
     private UserProfileService userProfileService;
 
     @PostMapping("/profile/add")
-    public ResponseEntity<?> addPhoto(@RequestParam("userID") String userID, @RequestParam("image") MultipartFile image, Model model, @RequestParam("zipCode") String zipCode, @RequestParam("hardinessZone") String hardinessZone, @RequestParam("description") String description) throws IOException {
-        String id = userProfileService.editProfile(userID, image, zipCode, hardinessZone, description);
-        return ResponseEntity.ok(new MessageResponse("Profile updated"));
+    public ResponseEntity<?> editProfile(@RequestParam("id") String id, @RequestParam("image") MultipartFile image, Model model, @RequestParam("zipCode") String zipCode, @RequestParam("hardinessZone") String hardinessZone, @RequestParam("description") String description) throws IOException {
+        return userProfileService.editProfile(id, image, zipCode, hardinessZone, description);
     }
 }
