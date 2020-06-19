@@ -21,6 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <script type="text/javascript" th:src="@{/js/login_register.js}"></script>
     <script type="text/javascript" th:src="@{/js/blogform.js}"></script>
+    <script type="text/javascript" th:src="@{/js/profile.js}"></script>
 </head>
 <body>
 
@@ -127,6 +128,10 @@
                         <div class="form-group">
                             <span><label for="signup_email">e-Mail</label>: <input type="email" id="signup_email" name="email"
                                                                                    class="form-control" placeholder="e-Mail"/><span id="error_email" class="errorField"></span></span>
+                        </div>
+                        <div class="form-group">
+                                <input type='file' id="imgInput" accept="image/*"/>
+                                <img id="imageDemo" src="#"/>
                         </div>
                         <div class="form-group">
                             <div class="row">

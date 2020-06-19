@@ -2,11 +2,13 @@ package com.connellboyce.peppergarden.controller;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import com.connellboyce.peppergarden.model.Pepper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,11 +16,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.connellboyce.peppergarden.model.ERole;
 import com.connellboyce.peppergarden.model.Role;
@@ -125,5 +123,13 @@ public class AuthController {
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
+
+    @GetMapping("/get/{username}")
+    public String getIdByUsername(@PathVariable("username")String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+        assert user.orElse(null) != null;
+        String userID = user.orElse(null).getId();
+        return userID;
     }
 }
