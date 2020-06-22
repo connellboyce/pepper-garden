@@ -8,6 +8,7 @@ $(document).ready(function(){
         type: "GET",
         beforeSend: function(xhr) {
             xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+            xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
         },
         success: function(result) {
             loadPosts(result);
@@ -37,6 +38,7 @@ $(document).ready(function(){
             type: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+                xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
             },
             success: function (result) {
                 $("#dashboardDiv").html(result);
