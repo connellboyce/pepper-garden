@@ -71,25 +71,23 @@ When finished, use your IDE's stop button to terminate the process.
     - [x] Dependencies Declared
     - [x] Set up start/stop for server hosting
 - [ ] UI / UX
-    - [ ] Login Page
+    - [x] Login Page
         - [x] Login/Register Account
-        - [ ] Recover password
-        - [ ] Aesthetic design
+        - [x] Aesthetic design
     - [ ] Dashboards
         - [x] Navbar
-        - [ ] Traversible pepper "dictionary"
-            - [ ] Sortable by species, zone, alphabetical
-        - [ ] "Scrapbook" page
+        - [x] Traversible pepper "dictionary"
+        - [ ] Feed
             - [ ] View pictures of peppers (with titles/captions)
-                - [ ] Sortable by zone
-        - [ ] "What I Learned" Page (Blog posts about lessons learned)
+            - [ ] Written posts
+            - [ ] Tag implementation
+            - [x] Make new post
+            - [ ] Comment
         - [ ] Aesthetic design
     - [ ] My Profile
-        - [ ] List of past entries
-            - [ ] Sortable by recency/year
-        - [ ] Changeable profile picture
+        - [x] Changeable profile picture
         - [ ] Change fields options
-        - [ ] Aesthetic design
+        - [x] Aesthetic design
 - [ ] Backend
     - [ ] MongoDB/RESTful APIs
         - [ ] User
@@ -102,11 +100,10 @@ When finished, use your IDE's stop button to terminate the process.
             - [ ] PUT
             - [ ] DELETE
     - [ ] Project Functionality
-        - [ ] "Lesson Learned"
-            - [ ] Post "Lesson Learned"
-            - [ ] Edit "Lesson Learned"
-            - [ ] Delete "Lesson Learned"
-        - [ ] Scrapbook
+        - [ ] Blog Post
+            - [x] Post text
+            - [ ] Edit text
+            - [ ] Delete text
             - [ ] Post image
             - [ ] Edit image title/caption
             - [ ] Delete image
@@ -152,7 +149,8 @@ When finished, use your IDE's stop button to terminate the process.
 
 ### **Resources-Used**
 * [Bezkoder - Spring Boot Token based Authentication with Spring Security & JWT](https://bezkoder.com/spring-boot-jwt-authentication/)
-
+* [Baeldung - Spring Actuator](https://www.baeldung.com/spring-boot-actuators)
+* [Baeldung - Upload and Retrieve Files](https://www.baeldung.com/spring-boot-mongodb-upload-file)
 
 ### **Further-Documentation**
 * [Project Timeline](documentation/TASKS_TIMELINE.md)

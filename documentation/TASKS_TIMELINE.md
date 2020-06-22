@@ -17,3 +17,8 @@ Week 3:
 * 06/15/2020: Added validation display to register form and created an API for blog posts
 * 06/16/2020: Pushed image to AWS and added form to add a blog post
 * 06/17/2020: Implemented Spring Actuator with custom info endpoint and created services to consume an external API
+* Began implementing profile system
+* Added more complete profile functionality and display
+
+Week 4:
+* 06/22/2020: Added profile picture functionality, deployed new image to AWS, and debugged in AWS
