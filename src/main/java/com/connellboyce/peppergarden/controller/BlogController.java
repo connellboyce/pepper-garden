@@ -28,6 +28,7 @@ public class BlogController {
      * @param blogRequest Request body with validated fields
      * @return Successful message response
      */
+    @CrossOrigin(origins = "*")
     @PostMapping("/add")
     public ResponseEntity<?> makePost(@Valid @RequestBody BlogRequest blogRequest) {
         BlogPost blogPost = new BlogPost(blogRequest.getSlug(), blogRequest.getTitle(), blogRequest.getBody(), blogRequest.getTags(), blogRequest.getPoster());
@@ -43,6 +44,7 @@ public class BlogController {
      * @param slug unique identifier by thread (not post)
      * @return the blog post attached to it
      */
+    @CrossOrigin(origins = "*")
     @GetMapping("/{slug}")
     public BlogPost getPepperById(@PathVariable("slug") String slug) {
         Optional<BlogPost> blogPost = blogRepository.findBySlug(slug);
@@ -56,6 +58,7 @@ public class BlogController {
      *
      * @return List of all posts
      */
+    @CrossOrigin(origins = "*")
     @GetMapping("/")
     public List<BlogPost> getAllPosts() {
         List<BlogPost> blogPostList = blogRepository.findAll();

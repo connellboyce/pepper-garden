@@ -56,6 +56,7 @@ public class AuthController {
      * @param loginRequest credentials to be POSTed
      * @return the JWT response
      */
+    @CrossOrigin(origins = "*")
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -88,6 +89,7 @@ public class AuthController {
      * @param signUpRequest the request body containing certain required fields
      * @return either a successful or unsuccessful response message
      */
+    @CrossOrigin(origins = "*")
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         //Check for a conflicting username
@@ -154,6 +156,7 @@ public class AuthController {
      * @param username path variable for the account username
      * @return the account userID
      */
+    @CrossOrigin(origins = "*")
     @GetMapping("/get/{username}")
     public String getIdByUsername(@PathVariable("username") String username) {
         Optional<User> user = userRepository.findByUsername(username);
