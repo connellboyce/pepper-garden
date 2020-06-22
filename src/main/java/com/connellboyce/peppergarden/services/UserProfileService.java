@@ -1,8 +1,10 @@
 package com.connellboyce.peppergarden.services;
 
 import com.connellboyce.peppergarden.model.Pepper;
+import com.connellboyce.peppergarden.model.Photo;
 import com.connellboyce.peppergarden.model.UserProfile;
 import com.connellboyce.peppergarden.payload.response.MessageResponse;
+import com.connellboyce.peppergarden.repository.PhotoRepository;
 import com.connellboyce.peppergarden.repository.UserProfileRepository;
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
@@ -20,9 +22,17 @@ public class UserProfileService {
     @Autowired
     private UserProfileRepository userProfileRepository;
 
+    @Autowired
+    private PhotoRepository photoRepository;
+
     public ResponseEntity<?> editProfile(String id, MultipartFile file, String zipCode, String hardinessZone, String description) throws IOException {
         UserProfile userProfile = new UserProfile();
         userProfile.setId(id);
+        Photo photo = new Photo();
+        photo.setId(id);
+        photo.setTitle("Profile Picture");
+        photo.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
+        photo = photoRepository.insert(photo);
         userProfile.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
         userProfile.setZipCode(zipCode);
         userProfile.setHardinessZone(hardinessZone);
