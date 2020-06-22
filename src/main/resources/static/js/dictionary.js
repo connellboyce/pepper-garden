@@ -1,18 +1,19 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     console.log("Loading dashboard script");
 
     $.ajax({
         url: "http://localhost:9999/api/pepper/",
         type: "GET",
-        beforeSend: function(xhr) {
+        beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+            xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
         },
-        success: function(result) {
+        success: function (result) {
             loadTable(result);
             $("#dictionaryDiv").fadeIn();
         },
-        error: function(xhr, resp, text) {
+        error: function (xhr, resp, text) {
             console.log(xhr, resp, text);
         }
     })
@@ -26,10 +27,9 @@ $(document).ready(function() {
     };
 
 
-
-    $("#myInput").on("keyup", function() {
+    $("#myInput").on("keyup", function () {
         var value = $(this).val().toLowerCase();
-        $("#myTableData tr:not(#header)").filter(function() {
+        $("#myTableData tr:not(#header)").filter(function () {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
@@ -37,7 +37,7 @@ $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
     var actions = $("table td:last-child").html();
     // Append table with add row form on add new button click
-    $(".add-new").click(function() {
+    $(".add-new").click(function () {
         $(this).attr("disabled", "disabled");
         var index = $("table tbody tr:last-child").index();
         var row = '<tr>' +
@@ -51,10 +51,10 @@ $(document).ready(function() {
         $('[data-toggle="tooltip"]').tooltip();
     });
     // Add row on add button click
-    $(document).on("click", ".add", function() {
+    $(document).on("click", ".add", function () {
         var empty = false;
         var input = $(this).parents("tr").find('input[type="text"]');
-        input.each(function() {
+        input.each(function () {
             if (!$(this).val()) {
                 $(this).addClass("error");
                 empty = true;
@@ -64,7 +64,7 @@ $(document).ready(function() {
         });
         $(this).parents("tr").find(".error").first().focus();
         if (!empty) {
-            input.each(function() {
+            input.each(function () {
                 $(this).parent("td").html($(this).val());
             });
             $(this).parents("tr").find(".add, .edit").toggle();
@@ -72,15 +72,15 @@ $(document).ready(function() {
         }
     });
     // Edit row on edit button click
-    $(document).on("click", ".edit", function() {
-        $(this).parents("tr").find("td:not(:last-child)").each(function() {
+    $(document).on("click", ".edit", function () {
+        $(this).parents("tr").find("td:not(:last-child)").each(function () {
             $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
         });
         $(this).parents("tr").find(".add, .edit").toggle();
         $(".add-new").attr("disabled", "disabled");
     });
     // Delete row on delete button click
-    $(document).on("click", ".delete", function() {
+    $(document).on("click", ".delete", function () {
         $(this).parents("tr").remove();
         $(".add-new").removeAttr("disabled");
     });
@@ -115,7 +115,6 @@ $(document).ready(function() {
     };
 
 
-
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
@@ -124,22 +123,23 @@ $(document).ready(function() {
 
 function openPepperView(id) {
     $.ajax({
-                url: "/pepperdetails",
-                type: "GET",
-                beforeSend: function(xhr) {
-                    xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
-                },
-                success: function(result) {
-                    $("#dashboardDiv").html(result);
-                    console.log(id);
-                    localStorage.setItem('currentPepper', id);
-                },
-                error: function(xhr, resp, text) {
-                    if (xhr.status == 401) {
-                        console.log(xhr.status);
-                        showModal("Error Code: " + xhr.status, "Your login token has expired. Please log in.");
-                    }
-                    console.log(xhr, resp, text);
-                }
-            })
+        url: "/pepperdetails",
+        type: "GET",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+            xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+        },
+        success: function (result) {
+            $("#dashboardDiv").html(result);
+            console.log(id);
+            localStorage.setItem('currentPepper', id);
+        },
+        error: function (xhr, resp, text) {
+            if (xhr.status == 401) {
+                console.log(xhr.status);
+                showModal("Error Code: " + xhr.status, "Your login token has expired. Please log in.");
+            }
+            console.log(xhr, resp, text);
+        }
+    })
 }
