@@ -2,10 +2,10 @@
     <div class="card" id="viewProfile">
         <h4 class="card-header"><span class="userdisplay"></span>'s Profile</h4>
         <div class="card-body paper-body">
-            <table>
+            <table style="float: right">
                 <tr>
                     <td>
-                        <span class="profilePicture"></span>
+                        <span id="profilePicture"><img src="../images/default.jpg" height="200px" width="200px" alt="profile picture"></span>
                     </td>
                     <td>
                         <table class="table" id="profileDetailTable">
@@ -22,7 +22,7 @@
                                 <td><span id="profileDescription"></span></td>
                             </tr>
                         </table>
-                        <button type="button" id="openEdit">Edit</button>
+                        &nbsp;&nbsp;<button type="button" class="btn" id="openEdit">Edit</button>
                     </td>
                 </tr>
             </table>
