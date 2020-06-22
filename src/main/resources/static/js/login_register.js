@@ -42,10 +42,7 @@ $(document).ready(function () {
     // click on button submit
     $("#loginForm").on("submit", function (e) {
         e.preventDefault();
-        // send ajax
         var loginRequest = {username: $("#username").val(), password: $("#password").val()};
-        //console.log("loginRequest = " + loginRequest);
-        //console.log("SFY " + JSON.stringify(loginRequest));
         $.ajax({
             url: '/api/auth/signin', // url where to submit the request
             type: "POST", // type of action POST || GET
@@ -53,9 +50,6 @@ $(document).ready(function () {
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(loginRequest), // post data || get data
             success: function (result) {
-                //$("#loginDiv").hide();
-                // you can see the result from the console
-                // tab of the developer tools
                 location.reload(true);
                 storeJWT(result);
                 console.log(result);
