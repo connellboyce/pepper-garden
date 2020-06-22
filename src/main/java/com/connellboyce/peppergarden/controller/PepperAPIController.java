@@ -1,6 +1,7 @@
 package com.connellboyce.peppergarden.controller;
 
-import com.connellboyce.peppergarden.model.*;
+import com.connellboyce.peppergarden.model.ESpecies;
+import com.connellboyce.peppergarden.model.Pepper;
 import com.connellboyce.peppergarden.payload.request.AddPepperRequest;
 import com.connellboyce.peppergarden.payload.response.MessageResponse;
 import com.connellboyce.peppergarden.repository.PepperRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -26,15 +28,24 @@ public class PepperAPIController {
     @Autowired
     SpeciesRepository speciesRepository;
 
+    /**
+     * POST mapping for the endpoint: /add
+     * Handles adding a new pepper to the database
+     *
+     * @param addPepperRequest pre-validated request body for adding a pepper
+     * @return successful or unsuccessful response message
+     */
     @PostMapping("/add")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<?> registerPepper(@Valid @RequestBody AddPepperRequest addPepperRequest) {
+        //Validate that the pepper does now already exist
         if (pepperRepository.existsByName(addPepperRequest.getName())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Pepper already exists!"));
         }
 
+        //Validate the species
         String species = addPepperRequest.getSpecies();
         if (species == null) {
             speciesRepository.findByName(ESpecies.SPECIES_UNKNOWN).orElseThrow(() -> new RuntimeException("Error: Null species"));
@@ -86,6 +97,11 @@ public class PepperAPIController {
         return ResponseEntity.ok(new MessageResponse("Pepper registered successfully!"));
     }
 
+    /**
+     * GET mapping to handle getting all peppers
+     *
+     * @return list of all peppers
+     */
     @GetMapping("/")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public List<Pepper> getAllPeppers() {
@@ -98,9 +114,15 @@ public class PepperAPIController {
         return pepperList;
     }
 
+    /**
+     * GET mapping for finding a specific pepper by ID
+     *
+     * @param pepperId path variable for pepper ID
+     * @return the Pepper with that ID
+     */
     @GetMapping("/{pepperId}")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-    public Pepper getPepperById(@PathVariable("pepperId")String pepperId) {
+    public Pepper getPepperById(@PathVariable("pepperId") String pepperId) {
         Optional<Pepper> pepper = pepperRepository.findById(pepperId);
 
         //To do: throw 404 not found if else

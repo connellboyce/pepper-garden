@@ -10,23 +10,44 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/test")
 public class TestController {
+
+    /**
+     * Tests for privilege to public content
+     *
+     * @return String if authorized
+     */
     @GetMapping("/all")
     public String allAccess() {
         return "Public Content.";
     }
 
+    /**
+     * Tests for privilege to user content
+     *
+     * @return String if authorized
+     */
     @GetMapping("/user")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public String userAccess() {
         return "User Content.";
     }
 
+    /**
+     * Tests for privilege to moderator content
+     *
+     * @return String if authorized
+     */
     @GetMapping("/mod")
     @PreAuthorize("hasRole('MODERATOR')")
     public String moderatorAccess() {
         return "Moderator Board.";
     }
 
+    /**
+     * Test for privilege to admin content
+     *
+     * @return String if authorized
+     */
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ADMIN')")
     public String adminAccess() {
