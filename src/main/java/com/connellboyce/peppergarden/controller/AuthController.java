@@ -49,20 +49,31 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
+    /**
+     * RESTful Post Mapping for /api/auth/signin endpoint
+     * POSTs credentials to the API and checks if credentials are valid
+     *
+     * @param loginRequest credentials to be POSTed
+     * @return the JWT response
+     */
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
+        //Create new Authentication object
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
+        //Get security context and create a JWT
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
+        //Add user information to the UserDetailsImpl object
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
 
+        //Return the JWT with a valid token and some of the user's information
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
@@ -70,14 +81,23 @@ public class AuthController {
                 roles));
     }
 
+    /**
+     * RESTful POST mapping for /api/auth/signup
+     * POSTs brand new information to the database to create a new account
+     *
+     * @param signUpRequest the request body containing certain required fields
+     * @return either a successful or unsuccessful response message
+     */
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+        //Check for a conflicting username
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Username is already taken!"));
         }
 
+        //Check for a conflicting email
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
@@ -92,6 +112,7 @@ public class AuthController {
         Set<String> strRoles = signUpRequest.getRoles();
         Set<Role> roles = new HashSet<>();
 
+        //Assign default role
         if (strRoles == null) {
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -119,14 +140,22 @@ public class AuthController {
             });
         }
 
+        //Set user with specified authority and save
         user.setRoles(roles);
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 
+    /**
+     * Gets the userID by username
+     * This feature may not last very long due to the security risk, but it is a temporary API endpoint
+     *
+     * @param username path variable for the account username
+     * @return the account userID
+     */
     @GetMapping("/get/{username}")
-    public String getIdByUsername(@PathVariable("username")String username) {
+    public String getIdByUsername(@PathVariable("username") String username) {
         Optional<User> user = userRepository.findByUsername(username);
         assert user.orElse(null) != null;
         String userID = user.orElse(null).getId();
