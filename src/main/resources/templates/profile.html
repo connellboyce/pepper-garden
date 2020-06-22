@@ -1,7 +1,39 @@
+<div class="panel">
+    <div class="card" id="viewProfile">
+        <h4 class="card-header"><span class="userdisplay"></span>'s Profile</h4>
+        <div class="card-body paper-body">
+            <table>
+                <tr>
+                    <td>
+                        <span class="profilePicture"></span>
+                    </td>
+                    <td>
+                        <table class="table" id="profileDetailTable">
+                            <tr>
+                                <th>Zip Code:</th>
+                                <td><span id="profileZipCode"></span></td>
+                            </tr>
+                            <tr>
+                                <th>Zone:</th>
+                                <td><span id="profileZone"></span></td>
+                            </tr>
+                            <tr>
+                                <th>Description:</th>
+                                <td><span id="profileDescription"></span></td>
+                            </tr>
+                        </table>
+                        <button type="button" id="openEdit">Edit</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
 <div id="dashboardTemplateDiv">
     <div class="panel">
-        <div class="card">
-            <h1 class="card-header">Welcome to your Profile, <span class="userdisplay"></span>!</h1>
+        <div class="card" id="editProfile" style="display: none">
+            <h1 class="card-header">Edit your Profile, <span class="userdisplay"></span>!</h1>
             <div class="card-body">
                 <form method="POST" action="/api/userProfile/photos/add" enctype="multipart/form-data" id="profileForm">
                     <input type="text" name="id" id="id-input" style="display: none">
@@ -20,6 +52,7 @@
                     <textarea form="profileForm" rows="4" cols="50" id="unfiltered-description-input" name="unfiltered-description" placeholder="Enter something about yourself here..."></textarea><br>
                     <br>
                     <button type="button" id="updateProfileButton" disabled>Update</button>
+                    <button type="button" id="closeEdit">Go Back</button>
                 </form>
             </div>
         </div>

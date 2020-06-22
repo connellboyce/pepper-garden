@@ -1,5 +1,6 @@
 package com.connellboyce.peppergarden.services;
 
+import com.connellboyce.peppergarden.model.Pepper;
 import com.connellboyce.peppergarden.model.UserProfile;
 import com.connellboyce.peppergarden.payload.response.MessageResponse;
 import com.connellboyce.peppergarden.repository.UserProfileRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @Service
 public class UserProfileService {
@@ -40,5 +42,12 @@ public class UserProfileService {
             return userProfileRepository.findById(id).get();
         }
         return null;
+    }
+
+    public UserProfile getById(String id) {
+        Optional<UserProfile> userProfile = userProfileRepository.findById(id);
+
+        //To do: throw 404 not found if else
+        return userProfile.orElse(null);
     }
 }
