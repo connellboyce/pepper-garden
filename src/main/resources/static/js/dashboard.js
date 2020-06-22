@@ -4,7 +4,7 @@ $(document).ready(function(){
 
     console.log("got here");
     $.ajax({
-        url: "http://localhost:9999/api/blog/",
+        url: "/api/blog/",
         type: "GET",
         beforeSend: function(xhr) {
             xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));

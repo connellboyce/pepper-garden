@@ -3,7 +3,7 @@ $(document).ready(function () {
     console.log("Loading dashboard script");
 
     $.ajax({
-        url: "http://localhost:9999/api/pepper/",
+        url: "/api/pepper/",
         type: "GET",
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
