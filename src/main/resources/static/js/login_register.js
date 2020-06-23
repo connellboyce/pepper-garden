@@ -70,8 +70,6 @@ $(document).ready(function () {
             password: $("#signup_password").val()
         };
 
-        console.log("signupRequest = " + signupRequest);
-        console.log("SFY " + JSON.stringify(signupRequest));
         $.ajax({
             url: '/api/auth/signup', // url where to submit the request
             type: "POST", // type of action POST || GET
@@ -82,7 +80,7 @@ $(document).ready(function () {
                 //$("#loginDiv").hide();
                 // you can see the result from the console
                 // tab of the developer tools
-                console.log(result);
+                console.log("Registered!");
             },
             error: function (xhr, resp, text) {
                 $(".errorField").html("");
@@ -143,7 +141,6 @@ $(document).ready(function () {
                 showDashboard();
                 var name = localStorage.getItem('username');
                 $("#userdisplay").text(name);
-                console.log(result);
             },
             error: function (xhr, resp, text) {
                 if (xhr.status == 401) {
@@ -169,7 +166,6 @@ $(document).ready(function () {
                 $("#dashboardDiv").html(result);
                 hideAllMainPanels();
                 showDashboard();
-                console.log(result);
             },
             error: function (xhr, resp, text) {
                 if (xhr.status == 401) {
@@ -195,7 +191,6 @@ $(document).ready(function () {
                 $("#dashboardDiv").html(result);
                 hideAllMainPanels();
                 showDashboard();
-                console.log(result);
             },
             error: function (xhr, resp, text) {
                 if (xhr.status == 401) {
@@ -221,7 +216,6 @@ $(document).ready(function () {
                 $("#dashboardDiv").html(result);
                 hideAllMainPanels();
                 showDashboard();
-                console.log(result);
             },
             error: function (xhr, resp, text) {
                 if (xhr.status == 401) {
@@ -256,7 +250,6 @@ $(document).ready(function () {
                 showDashboard();
                 var name = localStorage.getItem('username');
                 $("#userdisplay").text(name);
-                console.log(result);
             },
             error: function (xhr, resp, text) {
                 console.log(xhr, resp, text);

@@ -12,7 +12,6 @@ $(document).ready(function(){
         },
         success: function(result) {
             loadPosts(result);
-            console.log(result);
         },
         error: function(xhr, resp, text) {
             console.log(xhr, resp, text);
