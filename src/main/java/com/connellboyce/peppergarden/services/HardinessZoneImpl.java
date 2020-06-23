@@ -1,7 +1,5 @@
 package com.connellboyce.peppergarden.services;
 
-import com.connellboyce.peppergarden.controller.BlogController;
-import com.connellboyce.peppergarden.payload.request.HardinessZoneRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +18,12 @@ public class HardinessZoneImpl implements HardinessZoneService {
     @Value("${service.hardinesszone.api.template}")
     private String apiTemplate;
 
+    /**
+     * Finds hardiness zone by consuming an external API
+     *
+     * @param zipCode zip code to be queried for
+     * @return Response entity containing API response from phzmapi
+     */
     @Override
     public ResponseEntity<?> findHardinessZoneByZipCode(String zipCode) {
         logger.error("apiTemplate={} zipCode={}",apiTemplate,zipCode);

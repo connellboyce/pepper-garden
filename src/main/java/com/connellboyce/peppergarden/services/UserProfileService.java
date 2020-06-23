@@ -1,6 +1,5 @@
 package com.connellboyce.peppergarden.services;
 
-import com.connellboyce.peppergarden.model.Pepper;
 import com.connellboyce.peppergarden.model.Photo;
 import com.connellboyce.peppergarden.model.UserProfile;
 import com.connellboyce.peppergarden.payload.response.MessageResponse;
@@ -25,7 +24,18 @@ public class UserProfileService {
     @Autowired
     private PhotoRepository photoRepository;
 
-    public ResponseEntity<?> editProfile(String id, MultipartFile file, String zipCode, String hardinessZone, String description) throws IOException {
+    /**
+     * Creates a new profile which is linked to the User by its id
+     *
+     * @param id id which matches the user's
+     * @param file profile picture
+     * @param zipCode user's zip code
+     * @param hardinessZone user's hardiness zone found by above zip code
+     * @param description description of the user
+     * @return response entity for successfulness
+     * @throws IOException if file causes an error
+     */
+    public ResponseEntity<?> createNewProfile(String id, MultipartFile file, String zipCode, String hardinessZone, String description) throws IOException {
         UserProfile userProfile = new UserProfile();
         userProfile.setId(id);
         Photo photo = new Photo();
@@ -47,6 +57,12 @@ public class UserProfileService {
 
     }
 
+    /**
+     * Gets the profile by its id
+     *
+     * @param id id to query for
+     * @return found profile or null if not found
+     */
     public UserProfile getProfile(String id) {
         if (userProfileRepository.findById(id).isPresent()) {
             return userProfileRepository.findById(id).get();
@@ -54,6 +70,12 @@ public class UserProfileService {
         return null;
     }
 
+    /**
+     * Gets the profile by its id
+     *
+     * @param id id to query for
+     * @return found profile or null if not found
+     */
     public UserProfile getById(String id) {
         Optional<UserProfile> userProfile = userProfileRepository.findById(id);
 

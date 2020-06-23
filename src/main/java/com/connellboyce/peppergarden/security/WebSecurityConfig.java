@@ -1,5 +1,8 @@
 package com.connellboyce.peppergarden.security;
 
+import com.connellboyce.peppergarden.security.jwt.AuthEntryPointJwt;
+import com.connellboyce.peppergarden.security.jwt.AuthTokenFilter;
+import com.connellboyce.peppergarden.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -15,19 +18,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
-import com.connellboyce.peppergarden.security.jwt.AuthEntryPointJwt;
-import com.connellboyce.peppergarden.security.jwt.AuthTokenFilter;
-import com.connellboyce.peppergarden.security.services.UserDetailsImpl;
-import com.connellboyce.peppergarden.security.services.UserDetailsServiceImpl;
-
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(
-        // securedEnabled = true,
-        // jsr250Enabled = true,
-        prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     UserDetailsServiceImpl userDetailsService;
 
@@ -55,6 +50,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Handles permissions to different actions within the web app
+     *
+     * @param http security
+     * @throws Exception in case of failure(s)
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
@@ -66,8 +67,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/index.html").permitAll()
                 //.antMatchers("/api/pepper/**").permitAll()
                 .antMatchers("/actuator/**").permitAll()
-                .antMatchers("/api/photo/**").permitAll()
-                .antMatchers("/photos/**").permitAll()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .anyRequest().authenticated();
 

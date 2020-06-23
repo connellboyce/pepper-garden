@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Document(collection="user-profile")
 public class UserProfile {
+
     @Id
     @NotNull
     @NotBlank

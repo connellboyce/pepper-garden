@@ -3,6 +3,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class AddPepperRequest {
+
     @NotBlank
     @Size(min = 3)
     private String name;
@@ -11,6 +12,7 @@ public class AddPepperRequest {
     private String species;
 
     private String minSHU;
+
     private String maxSHU;
 
     private String origin;

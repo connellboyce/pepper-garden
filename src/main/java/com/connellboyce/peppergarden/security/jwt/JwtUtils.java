@@ -1,18 +1,18 @@
 package com.connellboyce.peppergarden.security.jwt;
 
-import java.util.Date;
-
+import com.connellboyce.peppergarden.security.services.UserDetailsImpl;
+import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import com.connellboyce.peppergarden.security.services.UserDetailsImpl;
-import io.jsonwebtoken.*;
+import java.util.Date;
 
 @Component
 public class JwtUtils {
+
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
     @Value("${connellboyce.app.jwtSecret}")
@@ -21,10 +21,18 @@ public class JwtUtils {
     @Value("${connellboyce.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
+    /**
+     * Creates the JWT
+     *
+     * @param authentication User's authentications
+     * @return built JWT
+     */
     public String generateJwtToken(Authentication authentication) {
 
+        //Creates a User Detail object with our custom authentications
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
+        //Build JWT
         return Jwts.builder()
                 .setSubject((userPrincipal.getUsername()))
                 .setIssuedAt(new Date())
@@ -33,10 +41,22 @@ public class JwtUtils {
                 .compact();
     }
 
+    /**
+     * Retrieves username from within the JWT
+     *
+     * @param token JWT to be parsed
+     * @return String username
+     */
     public String getUserNameFromJwtToken(String token) {
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
     }
 
+    /**
+     * Validates a JWT
+     *
+     * @param authToken uniquely generated authorization token
+     * @return valid or invalid
+     */
     public boolean validateJwtToken(String authToken) {
         try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);

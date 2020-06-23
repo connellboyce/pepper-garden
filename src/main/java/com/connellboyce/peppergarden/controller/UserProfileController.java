@@ -35,7 +35,7 @@ public class UserProfileController {
      */
     @PostMapping("/profile/add")
     public ResponseEntity<?> editProfile(@RequestParam("id") String id, @RequestParam("image") MultipartFile image, @RequestParam("zipCode") String zipCode, @RequestParam("hardinessZone") String hardinessZone, @RequestParam("description") String description) throws IOException {
-        return userProfileService.editProfile(id, image, zipCode, hardinessZone, description);
+        return userProfileService.createNewProfile(id, image, zipCode, hardinessZone, description);
     }
 
     /**

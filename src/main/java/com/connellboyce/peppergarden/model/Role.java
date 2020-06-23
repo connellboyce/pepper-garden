@@ -5,12 +5,22 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "roles")
 public class Role {
+
     @Id
     private String id;
+
     private ERole name;
 
-    public Role() { }
+    /**
+     * Empty Constructor
+     */
+    public Role() {}
 
+    /**
+     * Full Constructor
+     *
+     * @param name name of the authority level (user, moderator, admin)
+     */
     public Role(ERole name) {
         this.name = name;
     }
