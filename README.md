@@ -50,6 +50,9 @@ When finished, use your IDE's stop button to terminate the process.
 * MongoDB Atlas
 * Web Tokens
 * Bootstrap CDN
+* Docker
+* AWS
+* Shell Scripting
 
 
 ### **Features**
@@ -145,6 +148,7 @@ When finished, use your IDE's stop button to terminate the process.
 * UI Handled with Thymeleaf and Bootstrap
 * MongoDB connection handled through MongoDB cloud (Atlas).
 * Dependencies Jakarta XML Bind-API and JAXB Runtime are to resolve a Java 14 issue where a class could not be found.
+* AWS Credentials must be refreshed fairly often
 
 
 ### **Resources-Used**
