@@ -1,3 +1,4 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div id="dashboardTemplateDiv">
     <div class="panel">
         <div class="card">
@@ -8,4 +9,5 @@
     </div>
     <table id="dashboardTable"><tr></tr></table>
 </div>
-<script src = "../js/dashboard.js"></script>
+<script th:src="@{/js/dashboard.js}"></script>
+</html>
