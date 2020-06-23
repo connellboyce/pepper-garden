@@ -1,5 +1,11 @@
 $(document).ready(function () {
 
+    /**
+     * Function to verify that the user has the minimum clearance
+     *
+     * If they do not, it will open the login menu
+     * If they do, it will redirect to the dashboard
+     */
     function checkLoggedIn() {
         $.ajax({
             url: "/api/test/user",
@@ -8,23 +14,29 @@ $(document).ready(function () {
                 xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
             },
             success: function (result) {
-                console.log("Logged in!");
                 hideAllMainPanels();
                 loadDash();
                 showDashboard();
             },
             error: function (xhr, resp, text) {
-                console.log("Not logged in.");
                 showLogin();
                 console.log(xhr, resp, text);
             }
         })
-    };
+    }
+
     checkLoggedIn();
 
+    /**
+     * Stores data extracted from the JWT
+     *
+     * @param data JWT to be parsed
+     */
     function storeJWT(data) {
         //var token = result.accessToken;
         console.log(data["accessToken"]);
+
+        //Save these fields as cookies
         Cookies.set('accessToken', data["accessToken"], {expires: 1, path: '/', sameSite: 'lax'});
         Cookies.set('username', data["username"], {expires: 1, path: '/', sameSite: 'lax'});
 
@@ -33,13 +45,20 @@ $(document).ready(function () {
         var userEmail = data["email"];
         let username = data["username"];
 
+        //Save these fields as local storage
         localStorage.setItem('token', token);
         localStorage.setItem('AuthorizationHeader', tokenType + " " + token);
         localStorage.setItem('username', username);
         localStorage.setItem('userEmail', userEmail);
-    };
+    }
 
-    // click on button submit
+    /**
+     * On click of the login button:
+     *
+     * Sends an API request to validate credentials
+     * If successful, the app will store the JWT information
+     * If unsuccessful, the app will open a modal window
+     */
     $("#loginForm").on("submit", function (e) {
         e.preventDefault();
         var loginRequest = {username: $("#username").val(), password: $("#password").val()};
@@ -56,10 +75,18 @@ $(document).ready(function () {
             },
             error: function (xhr, resp, text) {
                 console.log(xhr, resp, text);
+                showModal("Login Failed", "Please try again...")
             }
         })
     });
 
+    /**
+     * On click of the register button:
+     *
+     * Sends an API request to add these credentials
+     * If successful: user is added and redirected to login
+     * If unsuccessful: error messages will display next to failed fields
+     */
     $("#registerForm").on("submit", function (e) {
         e.preventDefault();
         // send ajax
@@ -113,18 +140,29 @@ $(document).ready(function () {
         })
     });
 
+    /**
+     * Redirects to display Login form
+     */
     $("#loginLink").on("click", function (e) {
         e.preventDefault();
         hideAllMainPanels();
         showLogin();
     });
 
+    /**
+     * Redirects to display Register form
+     */
     $("#registerLink").on("click", function (e) {
         e.preventDefault();
         hideAllMainPanels();
         $("#registerDiv").show();
     });
 
+    /**
+     * Redirects to the dashboard when its nav bar link is clicked
+     *
+     * Also ensures that it is the only "lit up" option on the menu after success
+     */
     $("#dashNav").on("click", function (e) {
         e.preventDefault();
         removeActiveNavs();
@@ -152,6 +190,11 @@ $(document).ready(function () {
         })
     });
 
+    /**
+     * Redirects to the pepper dictionary when its nav bar link is clicked
+     *
+     * Also ensures that it is the only "lit up" option on the menu after success
+     */
     $("#dictionaryNav").on("click", function (e) {
         e.preventDefault();
         removeActiveNavs();
@@ -177,6 +220,11 @@ $(document).ready(function () {
         })
     });
 
+    /**
+     * Redirects to the contact page when its nav bar link is clicked
+     *
+     * Also ensures that it is the only "lit up" option on the menu after success
+     */
     $("#contactNav").on("click", function (e) {
         e.preventDefault();
         removeActiveNavs();
@@ -202,6 +250,11 @@ $(document).ready(function () {
         })
     });
 
+    /**
+     * Redirects to the profile page when its nav bar link is clicked
+     *
+     * Also ensures that it is the only "lit up" option on the menu after success
+     */
     $("#profileNav").on("click", function (e) {
         e.preventDefault();
         removeActiveNavs();
@@ -227,6 +280,9 @@ $(document).ready(function () {
         })
     });
 
+    /**
+     * Logs the user out, invalidates the previous JWT, and returns the user to the login page
+     */
     $("#logoutNav").on("click", function (e) {
         e.preventDefault();
 
@@ -237,6 +293,9 @@ $(document).ready(function () {
         location.reload(true);
     });
 
+    /**
+     * Loads the dashboard upon successful login
+     */
     function loadDash() {
         $.ajax({
             url: "/dashboard",
@@ -257,40 +316,47 @@ $(document).ready(function () {
         })
     };
 
+    /**
+     * Hides all main panels
+     *
+     * These panels are any HTML that is not the nav bar
+     */
     function hideAllMainPanels() {
         $(".mainPanels").hide();
     };
 
+    /**
+     * Shows the dashboard div, which has its HTML overwritten and changed to display the necessary components
+     *
+     * This div shows contact, profile, dictionary etc when asked to.
+     */
     function showDashboard() {
         $("#dashboardDiv").fadeIn();
         var name = localStorage.getItem('username');
         $(".userdisplay").text(name);
     };
 
+    /**
+     * Opens the login/register forms
+     */
     function showLogin() {
         $("#loginDiv").show();
-    };
+    }
 
-    function showDictionary() {
-        $("#dictionaryDiv").show();
-    };
-
-    function showContact() {
-        $("#contactDiv").show();
-    };
-
-    function showProfile() {
-        $("#profileDiv").show();
-        let name = localStorage.getItem('username');
-        console.log(name);
-        $("#profileUsername").text(name);
-    };
-
+    /**
+     * Un-highlights all nav bar items
+     */
     function removeActiveNavs() {
         $(".nav-link").removeClass("active");
         $(".nav-item").removeClass("active");
     };
 
+    /**
+     * Opens a modal window to display a message
+     *
+     * @param modalHeader Modal window title
+     * @param modalDisplay Modal window message
+     */
     function showModal(modalHeader, modalDisplay) {
         $("#modalHeader").html(modalHeader);
         $("#error").html(modalDisplay);

@@ -1,13 +1,11 @@
 $(document).ready(function () {
 
-    console.log("Loading dashboard script");
-
+    //API call to get all peppers from the database
     $.ajax({
         url: "/api/pepper/",
         type: "GET",
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
-            xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
         },
         success: function (result) {
             loadTable(result);
@@ -18,15 +16,25 @@ $(document).ready(function () {
         }
     })
 
+    /**
+     * Load table of peppers to the pepper dictionary
+     *
+     * @param result the pepper list from the API call above
+     */
     function loadTable(result) {
+        //Iterate through each pepper
         for (var i = 0; i < result.length; i++) {
+            //Add each pepper to the table as a row
             var obj = result[i];
             addRow(obj.name, obj.species, obj.minSHU, obj.maxSHU, obj.origin, obj.imageURL, obj.description, obj.id);
         }
 
-    };
+    }
 
-
+    /**
+     * Search bar functionality
+     * On new key input, function runs to hide all table items that do not match the search
+     */
     $("#myInput").on("keyup", function () {
         var value = $(this).val().toLowerCase();
         $("#myTableData tr:not(#header)").filter(function () {
@@ -34,58 +42,18 @@ $(document).ready(function () {
         });
     });
 
-    $('[data-toggle="tooltip"]').tooltip();
-    var actions = $("table td:last-child").html();
-    // Append table with add row form on add new button click
-    $(".add-new").click(function () {
-        $(this).attr("disabled", "disabled");
-        var index = $("table tbody tr:last-child").index();
-        var row = '<tr>' +
-            '<td><input type="text" class="form-control" name="name" id="name"></td>' +
-            '<td><input type="text" class="form-control" name="department" id="department"></td>' +
-            '<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
-            '<td>' + actions + '</td>' +
-            '</tr>';
-        $("table").append(row);
-        $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-    // Add row on add button click
-    $(document).on("click", ".add", function () {
-        var empty = false;
-        var input = $(this).parents("tr").find('input[type="text"]');
-        input.each(function () {
-            if (!$(this).val()) {
-                $(this).addClass("error");
-                empty = true;
-            } else {
-                $(this).removeClass("error");
-            }
-        });
-        $(this).parents("tr").find(".error").first().focus();
-        if (!empty) {
-            input.each(function () {
-                $(this).parent("td").html($(this).val());
-            });
-            $(this).parents("tr").find(".add, .edit").toggle();
-            $(".add-new").removeAttr("disabled");
-        }
-    });
-    // Edit row on edit button click
-    $(document).on("click", ".edit", function () {
-        $(this).parents("tr").find("td:not(:last-child)").each(function () {
-            $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-        });
-        $(this).parents("tr").find(".add, .edit").toggle();
-        $(".add-new").attr("disabled", "disabled");
-    });
-    // Delete row on delete button click
-    $(document).on("click", ".delete", function () {
-        $(this).parents("tr").remove();
-        $(".add-new").removeAttr("disabled");
-    });
-
-
+    /**
+     * Adds a new row to the dictionary table
+     *
+     * @param name Pepper name
+     * @param species Capsicum variety
+     * @param shuMin minimum Scoville units
+     * @param shuMax maximum Scoville units
+     * @param origin country/continent of origin
+     * @param image picture of the pepper
+     * @param description short anecdote about the pepper
+     * @param id pepper's database reference id which is not actually displayed
+     */
     function addRow(name, species, shuMin, shuMax, origin, image, description, id) {
         var table = document.getElementById("myTableData");
         var rowCount = table.rows.length;
@@ -97,7 +65,6 @@ $(document).ready(function () {
         if (shuMax != null) {
             shuMax = numberWithCommas(shuMax);
         }
-
         if (shuMin == "") {
             shuMin = "unknown";
         } else if (shuMax == "") {
@@ -105,7 +72,6 @@ $(document).ready(function () {
         }
 
         var shuRange = shuMin + " - " + shuMax;
-
         if (shuMax == "unknown" && shuMin == "unknown") {
             shuRange = "unknown";
         }
@@ -119,19 +85,30 @@ $(document).ready(function () {
     };
 
 
+    /**
+     * Format large numbers to have commas for easier reading
+     *
+     * @param x number to be reformatted
+     * @returns {string} number with commas in correct places
+     */
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-
 });
 
+
+/**
+ * Opens a page with more details about a selected pepper
+ *
+ * @param id pepper's database reference id
+ */
 function openPepperView(id) {
+    //Call to get the HTML for the pepperdetails page
     $.ajax({
         url: "/pepperdetails",
         type: "GET",
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
-            xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
         },
         success: function (result) {
             $("#dashboardDiv").html(result);
@@ -147,6 +124,12 @@ function openPepperView(id) {
     })
 }
 
+/**
+ * Opens a modal window to display a message
+ *
+ * @param modalHeader Modal window title
+ * @param modalDisplay Modal window message
+ */
 function showModal(modalHeader, modalDisplay) {
     $("#modalHeader").html(modalHeader);
     $("#error").html(modalDisplay);

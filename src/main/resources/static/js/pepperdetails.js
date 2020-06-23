@@ -1,12 +1,13 @@
 $(document).ready(function () {
+    //API call to get a pepper by id
     $.ajax({
         url: "/api/pepper/" + localStorage.getItem('currentPepper'),
         type: "GET",
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
-            xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
         },
         success: function (result) {
+            //Fill in the fields with the information for the requested pepper
             $("#pepperImage").html('<img src="' + result.imageURL + '" style="width: 400px"/>')
             $("#pepperName").html('<b>' + result.name + '</b');
             $("#pepperSpecies").html("Capsicum " + result.species);
