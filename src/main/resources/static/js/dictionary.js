@@ -91,8 +91,12 @@ $(document).ready(function () {
         var rowCount = table.rows.length;
         var row = table.insertRow(rowCount);
 
-        shuMin = numberWithCommas(shuMin);
-        shuMax = numberWithCommas(shuMax);
+        if(shuMin != null) {
+            shuMin = numberWithCommas(shuMin);
+        }
+        if(shuMax != null) {
+            shuMax = numberWithCommas(shuMax);
+        }
 
         if (shuMin == "") {
             shuMin = "unknown";
