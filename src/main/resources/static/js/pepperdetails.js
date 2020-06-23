@@ -17,7 +17,6 @@ $(document).ready(function () {
         },
         error: function (xhr, resp, text) {
             if (xhr.status == 401) {
-                console.log(xhr.status);
                 showModal("Error Code: " + xhr.status, "Your login token has expired. Please log in.");
             }
             console.log(xhr, resp, text);

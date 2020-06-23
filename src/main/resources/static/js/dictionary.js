@@ -91,10 +91,10 @@ $(document).ready(function () {
         var rowCount = table.rows.length;
         var row = table.insertRow(rowCount);
 
-        if(shuMin != null) {
+        if (shuMin != null) {
             shuMin = numberWithCommas(shuMin);
         }
-        if(shuMax != null) {
+        if (shuMax != null) {
             shuMax = numberWithCommas(shuMax);
         }
 
@@ -135,7 +135,6 @@ function openPepperView(id) {
         },
         success: function (result) {
             $("#dashboardDiv").html(result);
-            console.log(id);
             localStorage.setItem('currentPepper', id);
         },
         error: function (xhr, resp, text) {
@@ -146,4 +145,14 @@ function openPepperView(id) {
             console.log(xhr, resp, text);
         }
     })
+}
+
+function showModal(modalHeader, modalDisplay) {
+    $("#modalHeader").html(modalHeader);
+    $("#error").html(modalDisplay);
+    $("#closeButton").on("click", function (e) {
+        e.preventDefault();
+        location.reload(true);
+    });
+    $('#errorModal').modal("show");
 }

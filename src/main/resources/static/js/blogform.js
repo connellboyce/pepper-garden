@@ -1,10 +1,8 @@
 $(document).ready(function () {
-    console.log("I am being loaded")
 
 });
 
 function postBlog() {
-    console.log("Function called");
     var titleString = $("#formtitle");
     var slug = "testSlug";
 
@@ -14,7 +12,6 @@ function postBlog() {
         'body': $("#formbody").val(),
         'poster': localStorage.getItem('username')
     };
-    console.log(blogRequest);
     $.ajax({
         url: '/api/blog/add',
         type: "POST",

@@ -26,7 +26,6 @@ $(document).ready(function() {
                         xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
                     },
                     success: function (result) {
-                        console.log(result)
                         zipCode.val(result.zipCode);
                         hardinessZone.val(result.hardinessZone);
                         unfilteredDescription.val(result.description);
