@@ -1,17 +1,19 @@
-$(document).ready(function () {
-
-});
-
+/**
+ * Posts a blog entry
+ */
 function postBlog() {
     var titleString = $("#formtitle");
     var slug = "testSlug";
 
+    //Create a blog request object
     var blogRequest = {
         'slug': slug,
-        'title': $("#formtitle").val(),
+        'title': titleString,
         'body': $("#formbody").val(),
         'poster': localStorage.getItem('username')
     };
+
+    //API call to post this blog entry to the blog database
     $.ajax({
         url: '/api/blog/add',
         type: "POST",

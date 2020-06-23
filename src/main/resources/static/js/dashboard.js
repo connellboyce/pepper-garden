@@ -1,49 +1,54 @@
-$(document).ready(function(){
+$(document).ready(function () {
     var username = Cookies.get('username');
     $("#userdisplay").text(username);
 
-    console.log("got here");
+    //API call to retrieve all blog posts in the database
     $.ajax({
         url: "/api/blog/",
         type: "GET",
-        beforeSend: function(xhr) {
+        beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
-            xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
         },
-        success: function(result) {
+        success: function (result) {
             loadPosts(result);
         },
-        error: function(xhr, resp, text) {
+        error: function (xhr, resp, text) {
             console.log(xhr, resp, text);
         }
     })
 
+    /**
+     * On the success of the ajax call, this function will add new blog posts for each in the database
+     */
     function loadPosts(array) {
-        for (var i = array.length-1; i >= 0; i--) {
+        for (var i = array.length - 1; i >= 0; i--) {
             var obj = array[i];
 
             var table = document.getElementById("dashboardTable");
             var rowCount = table.rows.length;
             var row = table.insertRow(rowCount);
 
-            row.insertCell(0).innerHTML = '<br><div class="card"><div class="card-header"><h4>'+obj.title+'</h4><p>User: '+obj.poster+' - '+obj.date+'</p></div><div class="card-body">'+obj.body+'</div></div>';
+            row.insertCell(0).innerHTML = '<br><div class="card"><div class="card-header"><h4>' + obj.title + '</h4><p>User: ' + obj.poster + ' - ' + obj.date + '</p></div><div class="card-body">' + obj.body + '</div></div>';
         }
     }
 
+    /**
+     * When the new post button is clicked, it will open the form to post a new blog entry
+     */
     $("#openBlogForm").on("click", function (e) {
         e.preventDefault();
+
+        //API call to get the HTML for the blog form page
         $.ajax({
             url: "/blogform",
             type: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
-                xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
             },
             success: function (result) {
                 $("#dashboardDiv").html(result);
                 hideAllMainPanels();
                 showDashboard();
-                console.log(result);
             },
             error: function (xhr, resp, text) {
                 if (xhr.status == 401) {
@@ -55,6 +60,12 @@ $(document).ready(function(){
         })
     });
 
+    /**
+     * Opens a modal window to display a message
+     *
+     * @param modalHeader Modal window title
+     * @param modalDisplay Modal window message
+     */
     function showModal(modalHeader, modalDisplay) {
         $("#modalHeader").html(modalHeader);
         $("#error").html(modalDisplay);
@@ -63,15 +74,25 @@ $(document).ready(function(){
             location.reload(true);
         });
         $('#errorModal').modal("show");
-    };
+    }
 
+    /**
+     * Hides the main panels
+     * These panels are any HTML aside from the nav bar
+     */
     function hideAllMainPanels() {
         $(".mainPanels").hide();
-    };
+    }
 
+    /**
+     * This opens the "dashboard" div to view again
+     *
+     * This div is populated by different HTML as necessary and is the only HTML we want to display when
+     * this is called
+     */
     function showDashboard() {
         $("#dashboardDiv").fadeIn();
         var name = localStorage.getItem('username');
         $(".userdisplay").text(name);
-    };
+    }
 });
