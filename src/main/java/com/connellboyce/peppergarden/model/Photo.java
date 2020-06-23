@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "photos")
 public class Photo {
+
     @Id
     private String id;
 
@@ -13,6 +14,9 @@ public class Photo {
 
     private Binary image;
 
+    /**
+     * Empty Constructor
+     */
     public Photo() {}
 
     public String getId() {

@@ -5,12 +5,22 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "species")
 public class Species {
+
     @Id
     private String id;
+
     private ESpecies name;
 
+    /**
+     * Empty Constructor
+     */
     public Species() {}
 
+    /**
+     * Full Constructor
+     *
+     * @param name Name of species within the Capsicum family
+     */
     public Species(ESpecies name) {
         this.name = name;
     }

@@ -12,10 +12,12 @@ import java.util.Set;
 
 @Document(collection = "blog_posts")
 public class BlogPost {
+
     @Id
     private String id;
 
-    @NotNull @Indexed(unique = true)
+    @NotNull
+    @Indexed(unique = true)
     private String slug;
 
     @NotNull
@@ -30,10 +32,23 @@ public class BlogPost {
     @NotNull
     private String poster;
 
-    public BlogPost(){}
+    /**
+     * Empty Constructor
+     */
+    public BlogPost() {
+    }
 
+    /**
+     * Full Blog Post Constructor
+     *
+     * @param slug   Thread id
+     * @param title  Post title
+     * @param body   Post content
+     * @param tags   Post tags
+     * @param poster Username of author
+     */
     @PersistenceConstructor
-    public BlogPost(String slug, String title, String body, Set<String> tags, String poster){
+    public BlogPost(String slug, String title, String body, Set<String> tags, String poster) {
         this.title = title;
         this.slug = slug;
         this.body = body;

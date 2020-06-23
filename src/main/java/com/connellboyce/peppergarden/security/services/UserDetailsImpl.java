@@ -1,17 +1,18 @@
 package com.connellboyce.peppergarden.security.services;
+
+import com.connellboyce.peppergarden.model.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import com.connellboyce.peppergarden.model.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class UserDetailsImpl implements UserDetails {
+
     private static final long serialVersionUID = 1L;
 
     private String id;
@@ -25,6 +26,15 @@ public class UserDetailsImpl implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
+    /**
+     * Full Constructor
+     *
+     * @param id user id
+     * @param username user display name
+     * @param email user email
+     * @param password user password
+     * @param authorities user privileges
+     */
     public UserDetailsImpl(String id, String username, String email, String password,
                            Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
@@ -34,6 +44,12 @@ public class UserDetailsImpl implements UserDetails {
         this.authorities = authorities;
     }
 
+    /**
+     * Builds a UserDetailsImpl object from our custom User object
+     *
+     * @param user User object to be built
+     * @return UserDetailsImpl object based on the existing User object
+     */
     public static UserDetailsImpl build(User user) {
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))

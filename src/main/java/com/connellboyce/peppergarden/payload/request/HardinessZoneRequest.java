@@ -3,6 +3,7 @@ package com.connellboyce.peppergarden.payload.request;
 import javax.validation.constraints.NotBlank;
 
 public class HardinessZoneRequest {
+
     @NotBlank
     private String zipCode;
 

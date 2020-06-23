@@ -1,21 +1,26 @@
 package com.connellboyce.peppergarden.payload.request;
 
 import com.sun.istack.NotNull;
-import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 public class BlogRequest {
+
     @NotNull
     private String slug;
+
     @NotNull
     private String title;
+
     @NotNull
     private String body;
+
     private Date date = new Date();
+
     private Set<String> tags = new HashSet<>();
+
     @NotNull
     private String poster;
 

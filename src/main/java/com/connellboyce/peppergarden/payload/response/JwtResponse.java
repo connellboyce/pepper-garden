@@ -3,6 +3,7 @@ package com.connellboyce.peppergarden.payload.response;
 import java.util.List;
 
 public class JwtResponse {
+
     private String token;
     private String type = "Bearer";
     private String id;
@@ -10,6 +11,15 @@ public class JwtResponse {
     private String email;
     private List<String> roles;
 
+    /**
+     * Full Constructor
+     *
+     * @param accessToken the token itself; a generated code which the http client uses to prove authorization
+     * @param id JWT id
+     * @param username username being granted the token
+     * @param email email of the user being granted the token
+     * @param roles permission levels
+     */
     public JwtResponse(String accessToken, String id, String username, String email, List<String> roles) {
         this.token = accessToken;
         this.id = id;
