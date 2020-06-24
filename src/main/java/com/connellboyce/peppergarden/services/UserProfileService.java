@@ -5,6 +5,7 @@ import com.connellboyce.peppergarden.model.UserProfile;
 import com.connellboyce.peppergarden.payload.response.MessageResponse;
 import com.connellboyce.peppergarden.repository.PhotoRepository;
 import com.connellboyce.peppergarden.repository.UserProfileRepository;
+import org.apache.logging.log4j.message.Message;
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,5 +82,22 @@ public class UserProfileService {
 
         //To do: throw 404 not found if else
         return userProfile.orElse(null);
+    }
+
+    public ResponseEntity<?> updateUserProfile(String id, MultipartFile image, String zipCode, String hardinessZone, String description) throws IOException {
+        UserProfile profile = userProfileRepository.findById(id).orElse(null);
+        if (profile != null) {
+            if (image != null) {
+                profile.setImage(new Binary(BsonBinarySubType.BINARY, image.getBytes()));
+            }
+
+            profile.setZipCode(zipCode);
+            profile.setHardinessZone(hardinessZone);
+            profile.setDescription(description);
+            userProfileRepository.save(profile);
+
+            return ResponseEntity.ok(new MessageResponse("Success"));
+        }
+        return ResponseEntity.badRequest().build();
     }
 }

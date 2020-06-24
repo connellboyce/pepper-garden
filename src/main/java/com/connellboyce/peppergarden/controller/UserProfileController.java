@@ -51,4 +51,11 @@ public class UserProfileController {
         //To do: throw 404 not found if else
         return userProfileService.getById(id);
     }
+
+    @PutMapping("/profile/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @ResponseBody
+    public ResponseEntity<?> updateUserProfile(@PathVariable("id") String id, @RequestParam("image") MultipartFile image, @RequestParam("zipCode") String zipCode, @RequestParam("hardinessZone") String hardinessZone, @RequestParam("description") String description) throws IOException {
+        return userProfileService.updateUserProfile(id, image, zipCode, hardinessZone, description);
+    }
 }

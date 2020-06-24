@@ -112,7 +112,31 @@ $(document).ready(function () {
                 populateFields();
             },
             error: function (xhr, resp, text) {
-                console.log(xhr, resp, text);
+                console.log("Attempting to edit existing profile");
+                $.ajax({
+                    url: "/api/profiles/profile/"+userID,
+                    type: "PUT",
+                    data: new FormData($("#profileForm")[0]),
+                    enctype: 'multipart/form-data',
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+                    },
+                    success: function (result) {
+                        console.log("Success");
+                        $("#updateProfileButton").prop('disabled', true);
+
+                        //Closes the edit menu and opens the view again
+                        $("#editProfile").hide();
+                        $("#viewProfile").show();
+                        populateFields();
+                    },
+                    error: function (xhr, resp, text) {
+                        console.log(xhr, resp, text);
+                    }
+                })
             }
         });
     })
