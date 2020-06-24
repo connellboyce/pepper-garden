@@ -25,6 +25,7 @@ function postBlog() {
         },
         success: function (result) {
             console.log("Successfully posted!");
+            location.reload();
         },
         error: function (xhr, resp, text) {
             console.log(xhr, resp, text);
