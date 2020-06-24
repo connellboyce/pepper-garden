@@ -28,7 +28,7 @@ $(document).ready(function () {
             var rowCount = table.rows.length;
             var row = table.insertRow(rowCount);
 
-            row.insertCell(0).innerHTML = '<br><div class="card"><div class="card-header"><h4>' + obj.title + '</h4><p>User: ' + obj.poster + ' - ' + obj.date + '</p></div><div class="card-body">' + obj.body + '</div></div>';
+            row.insertCell(0).innerHTML = '<br><div class="card"><div class="card-header"><span class="blog-title">' + obj.title + '</span><span class="blog-author">u/'+ obj.author +'</span><span class="blog-attributes"><span class="blog-date">'+ obj.date +'</span></span></div><div class="card-body">' + obj.content + '</div></div>';
         }
     }
 

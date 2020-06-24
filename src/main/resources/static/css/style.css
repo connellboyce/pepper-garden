@@ -112,3 +112,19 @@ body {
     width: 100%;
     horiz-align: center;
 }
+.blog-title {
+    font-weight: bold;
+    font-size: medium;
+    float:left;
+}
+.blog-author {
+    margin-left: 20px;
+    color: darkgreen;
+    font-style: italic;
+}
+.blog-date {
+    text-align: right;
+}
+.blog-attributes {
+    float: right;
+}

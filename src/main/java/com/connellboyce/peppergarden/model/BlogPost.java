@@ -1,76 +1,24 @@
 package com.connellboyce.peppergarden.model;
 
-import com.sun.istack.NotNull;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceConstructor;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-@Document(collection = "blog_posts")
 public class BlogPost {
 
     @Id
     private String id;
 
-    @NotNull
-    @Indexed(unique = true)
-    private String slug;
-
-    @NotNull
     private String title;
 
-    @NotNull
-    private String body;
+    private String content;
 
-    private Date date = new Date();
-    private Set<String> tags = new HashSet<>();
+    private String author;
 
-    @NotNull
-    private String poster;
+    private String date;
 
-    /**
-     * Empty Constructor
-     */
-    public BlogPost() {
-    }
-
-    /**
-     * Full Blog Post Constructor
-     *
-     * @param slug   Thread id
-     * @param title  Post title
-     * @param body   Post content
-     * @param tags   Post tags
-     * @param poster Username of author
-     */
-    @PersistenceConstructor
-    public BlogPost(String slug, String title, String body, Set<String> tags, String poster) {
-        this.title = title;
-        this.slug = slug;
-        this.body = body;
-        this.tags = tags;
-        this.poster = poster;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug;
-    }
+    public BlogPost() { setCurrentDate(new Date()); }
 
     public String getTitle() {
         return title;
@@ -80,47 +28,25 @@ public class BlogPost {
         this.title = title;
     }
 
-    public String getBody() {
-        return body;
+    public String getContent() {
+        return content;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public Date getDate() {
-        return date;
-    }
+    public String getAuthor() { return author; }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    public void setAuthor(String author) { this.author = author; }
 
-    public Set<String> getTags() {
-        return tags;
-    }
+    public String getDate() { return date; }
 
-    public void setTags(Set<String> tags) {
-        this.tags = tags;
-    }
-
-    public String getPoster() {
-        return poster;
-    }
-
-    public void setPoster(String poster) {
-        this.poster = poster;
-    }
-
-    @Override
-    public String toString() {
-        return "BlogPost{" +
-                "id='" + id + '\'' +
-                ", slug='" + slug + '\'' +
-                ", title='" + title + '\'' +
-                ", body='" + body + '\'' +
-                ", date=" + date +
-                ", tags=" + tags +
-                '}';
+    /**
+     * Gets the system's current time and date
+     */
+    public void setCurrentDate(Date wholeDate) {
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy hh:mm");
+        this.date = formatter.format(wholeDate);
     }
 }

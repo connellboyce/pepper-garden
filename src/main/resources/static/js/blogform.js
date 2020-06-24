@@ -2,16 +2,16 @@
  * Posts a blog entry
  */
 function postBlog() {
-    var titleString = $("#formtitle");
+    var titleString = $("#title").val();
     var slug = "testSlug";
 
     //Create a blog request object
     var blogRequest = {
-        'slug': slug,
         'title': titleString,
-        'body': $("#formbody").val(),
-        'poster': localStorage.getItem('username')
+        'content': $("#content").val(),
+        'author': localStorage.getItem('username')
     };
+    console.log(blogRequest);
 
     //API call to post this blog entry to the blog database
     $.ajax({

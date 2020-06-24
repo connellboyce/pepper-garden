@@ -38,7 +38,6 @@ $(document).ready(function () {
                         hardinessZone.val(result.hardinessZone);
                         unfilteredDescription.val(result.description);
                         $("#profilePicture").html('<img src="data:image/png;base64,' + result.image.data + '"height="200px" width="200px" alt="Profile Picture">');
-                        console.log(result.image.data);
                         $("#profileZipCode").html(result.zipCode);
                         $("#profileZone").html(result.hardinessZone);
                         $("#profileDescription").html(result.description);

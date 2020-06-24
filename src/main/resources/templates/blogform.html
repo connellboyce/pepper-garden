@@ -2,19 +2,31 @@
 <div id="blogFormDiv">
     <div class="panel">
         <div class="card">
-            <form id="blogform">
-                <div class="card-header">
-                    <label for="formtitle">Title:</label><br>
-                    <input type="text" id="formtitle" name="formtitle" placeholder="Title">
+            <form>
+                <div class="card-header paper-header">
+                    <div class="form-group">
+                        <input type="text" id="title" placeholder="Title" autocomplete="off" class="form-control"
+                               name="title" width="727px"/>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <label for="formbody">Content:</label><br>
-                    <textarea rows="4" cols="50" id="formbody" name="formbody" form="blogform"></textarea> <br>
-                    <button type="button" id="blogSubmit" onclick="postBlog();">Post</button>
+                <div class="col-md-8 mt-5">
+                    <div class="form-group">
+                            <textarea type="text" rows="4" id="content" placeholder="Content" class="form-control"
+                                      name="content" autocomplete="off"></textarea>
+                    </div>
+
+                    <button class="btn btn-primary" type="button" onclick="postBlog();">Post</button>
+                    <br>
                 </div>
             </form>
+            <br>
         </div>
     </div>
 </div>
 <script th:src="@{/js/blogform.js}"></script>
+<script>
+    $('#content').summernote({
+        height: 200
+    });
+</script>
 </html>
