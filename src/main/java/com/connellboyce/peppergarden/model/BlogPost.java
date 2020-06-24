@@ -46,7 +46,7 @@ public class BlogPost {
      * Gets the system's current time and date
      */
     public void setCurrentDate(Date wholeDate) {
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy hh:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
         this.date = formatter.format(wholeDate);
     }
 }
