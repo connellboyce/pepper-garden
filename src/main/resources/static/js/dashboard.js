@@ -27,8 +27,9 @@ $(document).ready(function () {
             var table = document.getElementById("dashboardTable");
             var rowCount = table.rows.length;
             var row = table.insertRow(rowCount);
+            var commentCount = obj.comments.length;
 
-            row.insertCell(0).innerHTML = '<br><div class="card"><div class="card-header"><span class="blog-title">' + obj.title + '</span><span class="blog-author">u/' + obj.author + '</span><span class="blog-attributes"><span class="blog-date">' + obj.date + '</span></span></div><div class="card-body">' + obj.content + '<hr><a href="#" class="likeLink"><i class="fa fa-heart" aria-hidden="true"></i> Like (0)</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="openComments(\'' + obj.id + '\')" class="commentLink"><i class="fa fa-comments" aria-hidden="true"></i> Comments</a></div></div>';
+            row.insertCell(0).innerHTML = '<br><div class="card"><div class="card-header"><span class="blog-title">' + obj.title + '</span><span class="blog-author">u/' + obj.author + '</span><span class="blog-attributes"><span class="blog-date">' + obj.date + '</span></span></div><div class="card-body">' + obj.content + '<hr><a href="#" class="likeLink"><i class="fa fa-heart" aria-hidden="true"></i> Like (0)</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="openComments(\'' + obj.id + '\')" class="commentLink"><i class="fa fa-comments" aria-hidden="true"></i> Comments ('+ commentCount +')</a></div></div>';
         }
     }
 
