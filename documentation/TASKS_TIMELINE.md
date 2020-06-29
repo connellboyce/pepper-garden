@@ -17,8 +17,10 @@ Week 3:
 * 06/15/2020: Added validation display to register form and created an API for blog posts
 * 06/16/2020: Pushed image to AWS and added form to add a blog post
 * 06/17/2020: Implemented Spring Actuator with custom info endpoint and created services to consume an external API
-* Began implementing profile system
-* Added more complete profile functionality and display
+* 06/18/2020: Began implementing profile system
+* 06/19/2020: Added more complete profile functionality and display
 
 Week 4:
-* 06/22/2020: Added profile picture functionality, deployed new image to AWS, and debugged in AWS
+* 06/22/2020: Added profile picture functionality, deployed new image to AWS, created bash scripts to automate this and debugged in AWS
+* 06/23/2020: Fixed a bug in the dictionary with incorrect UTF encoding breaking links; Also added comments and javadoc to all of the classes.
+* 06/24/2020: Optimized blog posts by implementing SummerNote, redesigning the way posts are displayed; Implemented PUT method to profile functionality.
