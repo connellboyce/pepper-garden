@@ -34,7 +34,7 @@ $(document).ready(function () {
 
   $("#commentButton").on("click", function(e) {
       var commentText = $("#commentContent").val();
-      var commentRequest = {'commentBody' : '<br><div class="card" style="width: 100%"><div class="card-body">u/' + localStorage.getItem('username') + '<br><hr>' + commentText + '</div></div>'};
+      var commentRequest = {'commentBody' : '<br><div class="card"><div class="card-body">u/' + localStorage.getItem('username') + '<br><hr>' + commentText + '</div></div>'};
 
       console.log(localStorage.getItem('currentPost'));
 
@@ -53,7 +53,7 @@ $(document).ready(function () {
               var rowCount = table.rows.length;
               var row = table.insertRow(0);
 
-              row.insertCell(0).innerHTML = '<br><div class="card" style="width: 100%"><div class="card-body">u/' + localStorage.getItem('username') + '<br><hr>' + commentText + '</div></div>';
+              row.insertCell(0).innerHTML = '<br><div class="card"><div class="card-body">u/' + localStorage.getItem('username') + '<br><hr>' + commentText + '</div></div>';
           },
           error: function (xhr, resp, text) {
               console.log(xhr, resp, text);

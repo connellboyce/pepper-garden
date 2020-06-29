@@ -24,3 +24,6 @@ Week 4:
 * 06/22/2020: Added profile picture functionality, deployed new image to AWS, created bash scripts to automate this and debugged in AWS
 * 06/23/2020: Fixed a bug in the dictionary with incorrect UTF encoding breaking links; Also added comments and javadoc to all of the classes.
 * 06/24/2020: Optimized blog posts by implementing SummerNote, redesigning the way posts are displayed; Implemented PUT method to profile functionality.
+
+Week 5:
+* 06/29/2020: Added commenting functionality and display
