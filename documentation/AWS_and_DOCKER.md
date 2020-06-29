@@ -104,20 +104,25 @@ Go to Elastic Container Registry (ECR).
 
 Create a repository with the project name.
 
-Click view push commands and run the commands.
-```js
+Clean and install your project in terminal to update your target directory.
+```bash
+mvn clean install
+```
+
+Click view push commands in the AWS page and run the commands in your terminal.
+```bash
 aws ecr get-login-password --region <your region> | docker login --username AWS --password-stdin <auth token provided>
 ```
-```js
+```bash
 docker build -t <your repository name> .
 ```
 
-```js
+```bash
 docker tag <your repository name>:latest <provided auth token tag>/<your repo name>:latest
 ```
 
 Push your repository to AWS.
-```js
+```bash
 docker push <given auth token tag>/<your repo name>:latest
 ```
 On the left hand side navigation menu, under Amazon ECS click Clusters.

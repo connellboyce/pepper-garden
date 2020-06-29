@@ -1,0 +1,36 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div id="blogCommentDiv">
+    <div class="panel">
+        <div class="card">
+            <div class="card">
+                <div class="card-header"><span class="blog-title">Title</span><span
+                        class="blog-author"></span><span
+                        class="blog-attributes"><span class="blog-date"></span></span></div>
+                <div class="card-body"><span class="blog-content"></span>
+                    <hr>
+                    <a href="#" class="likeLink"><i class="fa fa-heart" aria-hidden="true"></i> Like (0)</a></div>
+            </div>
+        </div>
+        <br>
+        <div class="card">
+            <div class="col-md-8 mt-5">
+                <div class="form-group">
+                            <textarea type="text" rows="4" id="commentContent" placeholder="Content"
+                                      class="form-control"
+                                      name="content" autocomplete="off"></textarea>
+                </div>
+
+                <button class="btn btn-primary" type="button" id="commentButton">Post</button>
+                <br>
+            </div>
+        </div>
+        <table id="commentTable"><tr></tr></table>
+    </div>
+</div>
+<script th:src="@{/js/comments.js}"></script>
+<script>
+    $('#commentContent').summernote({
+        height: 200
+    });
+</script>
+</html>

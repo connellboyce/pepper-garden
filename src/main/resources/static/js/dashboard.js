@@ -28,7 +28,7 @@ $(document).ready(function () {
             var rowCount = table.rows.length;
             var row = table.insertRow(rowCount);
 
-            row.insertCell(0).innerHTML = '<br><div class="card"><div class="card-header"><span class="blog-title">' + obj.title + '</span><span class="blog-author">u/'+ obj.author +'</span><span class="blog-attributes"><span class="blog-date">'+ obj.date +'</span></span></div><div class="card-body">' + obj.content + '</div></div>';
+            row.insertCell(0).innerHTML = '<br><div class="card"><div class="card-header"><span class="blog-title">' + obj.title + '</span><span class="blog-author">u/' + obj.author + '</span><span class="blog-attributes"><span class="blog-date">' + obj.date + '</span></span></div><div class="card-body">' + obj.content + '<hr><a href="#" class="likeLink"><i class="fa fa-heart" aria-hidden="true"></i> Like (0)</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="openComments(\'' + obj.id + '\')" class="commentLink"><i class="fa fa-comments" aria-hidden="true"></i> Comments</a></div></div>';
         }
     }
 
@@ -95,4 +95,44 @@ $(document).ready(function () {
         var name = localStorage.getItem('username');
         $(".userdisplay").text(name);
     }
+
 });
+
+function openComments(id) {
+    $.ajax({
+        url: "/comments",
+        type: "GET",
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+        },
+        success: function (result) {
+            $("#dashboardDiv").html(result);
+            localStorage.setItem('currentPost', id);
+            hideAllMainPanels();
+            showDashboard();
+        },
+        error: function (xhr, resp, text) {
+            console.log(xhr, resp, text);
+        }
+    })
+}
+
+/**
+ * Hides the main panels
+ * These panels are any HTML aside from the nav bar
+ */
+function hideAllMainPanels() {
+    $(".mainPanels").hide();
+}
+
+/**
+ * This opens the "dashboard" div to view again
+ *
+ * This div is populated by different HTML as necessary and is the only HTML we want to display when
+ * this is called
+ */
+function showDashboard() {
+    $("#dashboardDiv").fadeIn();
+    var name = localStorage.getItem('username');
+    $(".userdisplay").text(name);
+}

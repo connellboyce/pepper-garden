@@ -314,7 +314,7 @@ $(document).ready(function () {
                 console.log(xhr, resp, text);
             }
         })
-    };
+    }
 
     /**
      * Hides all main panels

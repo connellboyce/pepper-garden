@@ -64,4 +64,15 @@ public class DashboardController {
     public String pepperDetailPage() {
         return "pepperdetails";
     }
+
+    /**
+     * GET mapping for endpoint: comments
+     *
+     * @return comments.html
+     */
+    @GetMapping("/comments")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public String commentsPage() {
+        return "comments";
+    }
 }

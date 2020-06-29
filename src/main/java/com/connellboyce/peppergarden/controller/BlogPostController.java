@@ -2,32 +2,29 @@ package com.connellboyce.peppergarden.controller;
 
 import com.connellboyce.peppergarden.model.BlogPost;
 import com.connellboyce.peppergarden.payload.request.BlogRequest;
+import com.connellboyce.peppergarden.payload.request.CommentRequest;
 import com.connellboyce.peppergarden.payload.response.MessageResponse;
 import com.connellboyce.peppergarden.repository.BlogRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/api/blog")
 public class BlogPostController {
 
-    private static Logger logger = LoggerFactory.getLogger(BlogPostController.class);
+    private static final Logger logger = LoggerFactory.getLogger(BlogPostController.class);
 
     @Autowired
     BlogRepository blogRepository;
-
-    /*@GetMapping("/")
-    public ResponseEntity<?> getBlog(Model model) {
-        model.addAttribute("post", new Post());
-        return ResponseEntity.ok(new MessageResponse("Post blogged successfully!"));
-    }*/
 
     /**
      * Base endpoint to get all blog posts
@@ -42,7 +39,6 @@ public class BlogPostController {
         postList.forEach(e -> {
             logger.debug(e.toString());
         });
-
 
         return postList;
     }
@@ -60,5 +56,27 @@ public class BlogPostController {
         }
 
         return ResponseEntity.ok(new MessageResponse("Post blogged successfully!"));
+    }
+
+    @PostMapping("/comment/{postId}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    public ResponseEntity<?> addCommentToPost (@PathVariable("postId") String postId, @Valid @RequestBody CommentRequest commentRequest){
+        Optional<BlogPost> blogPost = blogRepository.findById(postId);
+
+        if (blogPost.orElse(null) != null) {
+            blogPost.orElse(null).addComment(commentRequest.getCommentBody());
+            blogRepository.save(blogPost.orElse(null));
+            return ResponseEntity.ok(new MessageResponse("Comment posted successfully!"));
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
+    @GetMapping("/{postId}")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+    @ResponseBody
+    public BlogPost getPostById (@PathVariable("postId") String postId){
+        Optional<BlogPost> blogPost = blogRepository.findById(postId);
+
+        return blogPost.orElse(null);
     }
 }
