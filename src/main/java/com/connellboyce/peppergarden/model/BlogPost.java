@@ -22,6 +22,8 @@ public class BlogPost {
 
     private ArrayList<String> comments = new ArrayList<>();
 
+    private ArrayList<String> likes = new ArrayList<>();
+
     public BlogPost() { setCurrentDate(new Date()); }
 
     public String getId() { return id; }
@@ -57,6 +59,18 @@ public class BlogPost {
     public void setComments(ArrayList<String> comments) { this.comments = comments; }
 
     public void addComment(String comment) { this.comments.add(comment); }
+
+    public ArrayList<String> getLikes() { return likes; }
+
+    public void setLikes(ArrayList<String> likes) { this.likes = likes; }
+
+    public void addLike(String userId) {
+        if(!this.likes.contains(userId)) {
+            this.likes.add(userId);
+        }else {
+            this.likes.remove(userId);
+        }
+    }
 
     /**
      * Gets the system's current time and date

@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     var username = Cookies.get('username');
     $("#userdisplay").text(username);
 
@@ -21,16 +22,36 @@ $(document).ready(function () {
      * On the success of the ajax call, this function will add new blog posts for each in the database
      */
     function loadPosts(array) {
-        for (var i = array.length - 1; i >= 0; i--) {
-            var obj = array[i];
+        $.ajax({
+            url: "/api/auth/get/" + localStorage.getItem('username'),
+            type: "GET",
+            beforeSend: function (xhr) {
+                $("#zipCode-input").blur();
+                xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+            },
+            success: function (result) {
+                var userid = result;
 
-            var table = document.getElementById("dashboardTable");
-            var rowCount = table.rows.length;
-            var row = table.insertRow(rowCount);
-            var commentCount = obj.comments.length;
+                for (var i = array.length - 1; i >= 0; i--) {
+                    var obj = array[i];
 
-            row.insertCell(0).innerHTML = '<br><div class="card"><div class="card-header"><span class="blog-title">' + obj.title + '</span><span class="blog-author">u/' + obj.author + '</span><span class="blog-attributes"><span class="blog-date">' + obj.date + '</span></span></div><div class="card-body">' + obj.content + '<hr><a href="#" class="likeLink"><i class="fa fa-heart" aria-hidden="true"></i> Like (0)</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="openComments(\'' + obj.id + '\')" class="commentLink"><i class="fa fa-comments" aria-hidden="true"></i> Comments ('+ commentCount +')</a></div></div>';
-        }
+                    var table = document.getElementById("dashboardTable");
+                    var rowCount = table.rows.length;
+                    var row = table.insertRow(rowCount);
+                    var commentCount = obj.comments.length;
+
+                    row.insertCell(0).innerHTML = '<br><div class="card"><div class="card-header"><span class="blog-title">' + obj.title + '</span><span class="blog-author">u/' + obj.author + '</span><span class="blog-attributes"><span class="blog-date">' + obj.date + '</span></span></div><div class="card-body">' + obj.content + '<hr><a href="#!" id="post'+i+'" onclick="likePost(\'' + obj.id + '\','+i+')" class="likeLink"><i class="fa fa-heart" aria-hidden="true"></i> Like ('+obj.likes.length+')</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="openComments(\'' + obj.id + '\')" class="commentLink"><i class="fa fa-comments" aria-hidden="true"></i> Comments ('+ commentCount +')</a></div></div>';
+
+                    if(obj.likes.includes(userid)) {
+                        $("#post"+i).css("color", "red");
+                    }
+
+                }
+            },
+            error: function (xhr, resp, text) {
+                console.log(xhr, resp, text);
+            }
+        })
     }
 
     /**
@@ -116,6 +137,48 @@ function openComments(id) {
             console.log(xhr, resp, text);
         }
     })
+}
+
+function likePost(id, number) {
+    $.ajax({
+        url: "/api/auth/get/" + localStorage.getItem('username'),
+        type: "GET",
+        beforeSend: function (xhr) {
+            $("#zipCode-input").blur();
+            xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+        },
+        success: function (result) {
+            var userID = result;
+            var idRequest = { 'userId': userID };
+
+            $.ajax({
+                url: "/api/blog/like/" + id,
+                type: "POST",
+                dataType: 'json', // data type
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(idRequest),
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
+                },
+                success: function (result) {
+                    console.log(result);
+                    console.log(userID);
+                    if (result.includes(userID)) {
+                        $("#post"+number).css("color", "red");
+                    } else {
+                        $("#post"+number).css("color", "#2588df");
+                    }
+                },
+                error: function (xhr, resp, text) {
+                    console.log(xhr, resp, text);
+                }
+            })
+        },
+        error: function (xhr, resp, text) {
+            console.log(xhr, resp, text);
+        }
+    })
+    return false;
 }
 
 /**
