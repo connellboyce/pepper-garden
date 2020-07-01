@@ -1,5 +1,5 @@
 export AWS_DEFAULT_REGION=us-east-1
-export AWS_NETWORK_CONFIG="awsvpcConfiguration={subnets=[subnet-17eb3736,subnet-a436d395],securityGroups=[sg-0cfd6d1ab46e0c438],assignPublicIp=ENABLED}"
+export AWS_NETWORK_CONFIG="awsvpcConfiguration={subnets=[subnet-17eb3736,subnet-a436d395],securityGroups=[sg-0da160adf822eb63e],assignPublicIp=ENABLED}"
 export AWS_CLUSTER=pepper-garden
 export AWS_TASK_DEFINITION=pepper-garden
 
