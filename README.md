@@ -155,6 +155,7 @@ When finished, use your IDE's stop button to terminate the process.
 * [Bezkoder - Spring Boot Token based Authentication with Spring Security & JWT](https://bezkoder.com/spring-boot-jwt-authentication/)
 * [Baeldung - Spring Actuator](https://www.baeldung.com/spring-boot-actuators)
 * [Baeldung - Upload and Retrieve Files](https://www.baeldung.com/spring-boot-mongodb-upload-file)
+* [bluematador - How to deploy an app to AWS: Route 53 and DNS explained](https://www.bluematador.com/blog/how-to-deploy-an-app-to-aws-route-53-and-dns-explained)
 
 ### **Further-Documentation**
 * [Project Timeline](documentation/TASKS_TIMELINE.md)

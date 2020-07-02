@@ -164,3 +164,14 @@ For security groups, press edit and add a new TCP connection with the port you e
 
 Run Task.
 
+### Route 53 Deployment
+
+Register a domain with Route 53. (This may take several days)
+
+Navigate to Hosted Zones and select the option to Create a new Record.
+
+Leave the name field blank, but select A - IPv4 for the type.
+
+Get the public IP from the task being run in ECS, and put that IP in the value.
+
+Complete that form, and the domain now utilizes the web app.
