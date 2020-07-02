@@ -108,6 +108,9 @@ $(document).ready(function () {
                 // you can see the result from the console
                 // tab of the developer tools
                 console.log("Registered!");
+                showModal("Registered!", "Log in to continue.")
+                hideAllMainPanels();
+                showLogin();
             },
             error: function (xhr, resp, text) {
                 $(".errorField").html("");
