@@ -129,11 +129,16 @@ $(document).ready(function () {
                         field = "email";
                     } else if (errorMessage.includes("Username") || errorMessage.includes("username")) {
                         field = "username";
+                    } else if (errorMessage.includes("Password") || errorMessage.includes("password")) {
+                    field = "password";
                     }
+
                     if (field === "username") {
                         $("#error_username").html(errorMessage);
                     } else if (field === "email") {
                         $("#error_email").html(errorMessage);
+                    } else if (field === "password") {
+                        $("#error_password").html(errorMessage);
                     }
                     console.log(xhr, resp, text);
                     console.log(field + " has error: " + errorMessage);
