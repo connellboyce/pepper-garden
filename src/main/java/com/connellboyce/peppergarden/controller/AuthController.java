@@ -96,6 +96,12 @@ public class AuthController {
                     .body(new MessageResponse("Error: Username is already taken!"));
         }
 
+        if (signUpRequest.getPassword().length() > 40 || signUpRequest.getPassword().length() < 6) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Password must be between 6 and 40 characters!"));
+        }
+
         //Check for a conflicting email
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity
