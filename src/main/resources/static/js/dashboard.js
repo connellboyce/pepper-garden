@@ -40,7 +40,7 @@ $(document).ready(function () {
                     var row = table.insertRow(rowCount);
                     var commentCount = obj.comments.length;
 
-                    row.insertCell(0).innerHTML = '<br><div class="card"><div class="card-header"><span class="blog-title">' + obj.title + '</span><span class="blog-author">u/' + obj.author + '</span><span class="blog-attributes"><span class="blog-date">' + obj.date + '</span></span></div><div class="card-body">' + obj.content + '<hr><a href="#!" id="post'+i+'" onclick="likePost(\'' + obj.id + '\','+i+')" class="likeLink"><i class="fa fa-heart" aria-hidden="true"></i> Like ('+obj.likes.length+')</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="openComments(\'' + obj.id + '\')" class="commentLink"><i class="fa fa-comments" aria-hidden="true"></i> Comments ('+ commentCount +')</a></div></div>';
+                    row.insertCell(0).innerHTML = '<br><div class="card"><div class="card-header"><span class="blog-title">' + obj.title + '</span><span class="blog-author">u/' + obj.author + '</span><span class="blog-attributes"><span class="blog-date">' + obj.date + '</span></span></div><div class="card-body">' + obj.content + '<hr><a href="#!" id="post'+i+'" onclick="likePost(\'' + obj.id + '\','+i+')" class="likeLink"><i class="fa fa-heart" aria-hidden="true"></i> Like (<span id="like'+i+'">'+obj.likes.length+'</span>)</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="openComments(\'' + obj.id + '\')" class="commentLink"><i class="fa fa-comments" aria-hidden="true"></i> Comments ('+ commentCount +')</a></div></div>';
 
                     if(obj.likes.includes(userid)) {
                         $("#post"+i).css("color", "red");
@@ -161,12 +161,12 @@ function likePost(id, number) {
                     xhr.setRequestHeader('Authorization', localStorage.getItem('AuthorizationHeader'));
                 },
                 success: function (result) {
-                    console.log(result);
-                    console.log(userID);
                     if (result.includes(userID)) {
                         $("#post"+number).css("color", "red");
+                        $("#like"+number).html(parseInt($("#like"+number).html())+1);
                     } else {
                         $("#post"+number).css("color", "#2588df");
+                        $("#like"+number).html(parseInt($("#like"+number).html())-1);
                     }
                 },
                 error: function (xhr, resp, text) {
