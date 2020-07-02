@@ -135,6 +135,7 @@ $(document).ready(function () {
                     } else if (field === "email") {
                         $("#error_email").html(errorMessage);
                     }
+                    console.log(xhr, resp, text);
                     console.log(field + " has error: " + errorMessage);
                 }
 
